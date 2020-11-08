@@ -193,6 +193,7 @@ def main():
             shuffle = True,
             batch_size=args.batch_size,
             num_workers=args.num_workers,
+            pin_memory = True,
             drop_last=True)
         
         unlabeled_trainloader = DataLoader(
@@ -200,11 +201,13 @@ def main():
             shuffle=True,
             batch_size=args.batch_size*args.mu,
             num_workers=args.num_workers,
+            pin_memory = True,
             drop_last=True)
 
         test_loader = DataLoader(
             test_dataset,
             batch_size=args.batch_size,
+            pin_memory = True,
             num_workers=args.num_workers)
 
     else:
@@ -367,8 +370,8 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
             batch_size = inputs_x.shape[0]
 
             inputs = interleave(
-                torch.cat((inputs_x, inputs_u_w, inputs_u_s)), 2*args.mu+1).to(args.device)
-            targets_x = targets_x.to(args.device)
+                torch.cat((inputs_x, inputs_u_w, inputs_u_s)), 2*args.mu+1).to(args.device, non_blocking=True)
+            targets_x = targets_x.to(args.device, non_blocking=True)
             logits = model(inputs)
             logits = de_interleave(logits, 2*args.mu+1)
             logits_x = logits[:batch_size]
@@ -480,8 +483,8 @@ def test(args, test_loader, model, epoch):
             data_time.update(time.time() - end)
             model.eval()
 
-            inputs = inputs.to(args.device)
-            targets = targets.to(args.device)
+            inputs = inputs.to(args.device, non_blocking=True)
+            targets = targets.to(args.device, non_blocking=True)
             outputs = model(inputs)
             loss = F.cross_entropy(outputs, targets)
 

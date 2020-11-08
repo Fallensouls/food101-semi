@@ -96,10 +96,10 @@ def get_cifar100(root, num_labeled):
 
 def get_food101(root, labeledPercentage):
     transform_labeled = transforms.Compose([
-        transforms.Resize((32,32)),
+        transforms.Resize((64,64)),
         transforms.RandomHorizontalFlip(),
-        transforms.RandomCrop(size=32,
-                              padding=int(32*0.125),
+        transforms.RandomCrop(size=64,
+                              padding=int(64*0.125),
                               padding_mode='reflect'),
         transforms.ToTensor(),
         transforms.Normalize(mean=food101_mean, std=food101_mean)])
@@ -127,16 +127,16 @@ def x_u_split(labels,
 class TransformFix(object):
     def __init__(self, mean, std):
         self.weak = transforms.Compose([
-            transforms.Resize((32,32)),
+            transforms.Resize((64,64)),
             transforms.RandomHorizontalFlip(),
-            transforms.RandomCrop(size=32,
-                                  padding=int(32*0.125),
+            transforms.RandomCrop(size=64,
+                                  padding=int(64*0.125),
                                   padding_mode='reflect')])
         self.strong = transforms.Compose([
-            transforms.Resize((32,32)),
+            transforms.Resize((64,64)),
             transforms.RandomHorizontalFlip(),
-            transforms.RandomCrop(size=32,
-                                  padding=int(32*0.125),
+            transforms.RandomCrop(size=64,
+                                  padding=int(64*0.125),
                                   padding_mode='reflect'),
             RandAugmentMC(n=2, m=10)])
         self.normalize = transforms.Compose([
