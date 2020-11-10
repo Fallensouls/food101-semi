@@ -19,6 +19,7 @@ from tqdm import tqdm
 
 from dataset.cifar import DATASET_GETTERS
 from utils import AverageMeter, accuracy
+from models.nt_xent import NTXentLoss
 
 logger = logging.getLogger(__name__)
 best_acc = 0
@@ -342,12 +343,13 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
     losses = AverageMeter()
     losses_x = AverageMeter()
     losses_u = AverageMeter()
+    losses_s = AverageMeter()
     end = time.time()
 
     labeled_iter = iter(labeled_trainloader)
     unlabeled_iter = iter(unlabeled_trainloader)
-    
-    print(model)
+    simclr_criterion = get_simclr_criterion(args.device, args.batch_size * args.mu)
+
     model.train()
     for epoch in range(args.start_epoch, args.epochs):
         if not args.no_progress:
@@ -373,10 +375,15 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
             inputs = interleave(
                 torch.cat((inputs_x, inputs_u_w, inputs_u_s)), 2*args.mu+1).to(args.device, non_blocking=True)
             targets_x = targets_x.to(args.device, non_blocking=True)
-            logits = model(inputs)
+            logits, features = model(inputs)
             logits = de_interleave(logits, 2*args.mu+1)
             logits_x = logits[:batch_size]
             logits_u_w, logits_u_s = logits[batch_size:].chunk(2)
+
+            features = de_interleave(features, 2*args.mu+1)
+            # features_x = features[:batch_size]
+            features_u_w, features_u_s = features[batch_size:].chunk(2)
+
             del logits
 
             Lx = F.cross_entropy(logits_x, targets_x, reduction='mean')
@@ -388,7 +395,8 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
             Lu = (F.cross_entropy(logits_u_s, targets_u,
                                   reduction='none') * mask).mean()
 
-            loss = Lx + args.lambda_u * Lu
+            Ls = simclr_loss(features_u_w, features_u_s, simclr_criterion)
+            loss = Lx + args.lambda_u * Lu + Ls
 
             if args.amp:
                 with amp.scale_loss(loss, optimizer) as scaled_loss:
@@ -399,6 +407,7 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
             losses.update(loss.item())
             losses_x.update(Lx.item())
             losses_u.update(Lu.item())
+            losses_s.update(Ls.item())
             optimizer.step()
             scheduler.step()
             if args.use_ema:
@@ -409,7 +418,7 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
             end = time.time()
             mask_prob = mask.mean().item()
             if not args.no_progress:
-                p_bar.set_description("Train Epoch: {epoch}/{epochs:4}. Iter: {batch:4}/{iter:4}. LR: {lr:.4f}. Loss: {loss:.4f}. Loss_x: {loss_x:.4f}. Loss_u: {loss_u:.4f}. Mask: {mask:.2f}. ".format(
+                p_bar.set_description("Train Epoch: {epoch}/{epochs:4}. Iter: {batch:4}/{iter:4}. LR: {lr:.4f}. Loss: {loss:.4f}. Loss_x: {loss_x:.4f}. Loss_u: {loss_u:.4f}. Loss_s: {loss_s:.4f}. Mask: {mask:.2f}. ".format(
                     epoch=epoch + 1,
                     epochs=args.epochs,
                     batch=batch_idx + 1,
@@ -420,6 +429,7 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
                     loss=losses.avg,
                     loss_x=losses_x.avg,
                     loss_u=losses_u.avg,
+                    loss_s=losses_s.avg,
                     mask=mask_prob))
                 p_bar.update()
 
@@ -486,7 +496,7 @@ def test(args, test_loader, model, epoch):
 
             inputs = inputs.to(args.device, non_blocking=True)
             targets = targets.to(args.device, non_blocking=True)
-            outputs = model(inputs)
+            outputs, _ = model(inputs)
             loss = F.cross_entropy(outputs, targets)
 
             prec1, prec5 = accuracy(outputs, targets, topk=(1, 5))
@@ -512,6 +522,16 @@ def test(args, test_loader, model, epoch):
     logger.info("top-5 acc: {:.2f}".format(top5.avg))
     return losses.avg, top1.avg
 
+
+def get_simclr_criterion(device, batch_size, temperature=0.5, use_cosine_similarity=True):
+    return NTXentLoss(device, batch_size, temperature, use_cosine_similarity)
+
+def simclr_loss(zis, zjs, criterion):
+    zis = F.normalize(zis, dim=1)
+    zjs = F.normalize(zjs, dim=1)
+
+    loss = criterion(zis, zjs)
+    return loss
 
 if __name__ == '__main__':
     main()

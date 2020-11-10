@@ -6,8 +6,8 @@ from torchvision import datasets
 from torchvision import transforms
 from torchvision.transforms.transforms import Resize
 from .randaugment import RandAugmentMC
-from .food101 import get_food101Data
-
+from .food101 import get_food101Data, get_unlabel_food101
+from .transforms import get_simclr_data_transforms
 
 logger = logging.getLogger(__name__)
 
@@ -102,11 +102,24 @@ def get_food101(root, labeledPercentage):
                               padding=int(64*0.125),
                               padding_mode='reflect'),
         transforms.ToTensor(),
-        transforms.Normalize(mean=food101_mean, std=food101_mean)])
+        transforms.Normalize(mean=food101_mean, std=food101_std)])
     LabeledSet,UnlabeledSet,TestSet = get_food101Data(root,labeledPercentage,transform_labeled,TransformFix(mean=food101_mean, std=food101_std))
     logger.info("Dataset: food101")
     return LabeledSet, UnlabeledSet, TestSet
 
+
+def get_food101_unlabel(root):
+    transform_labeled = transforms.Compose([
+        transforms.Resize((64,64)),
+        transforms.RandomHorizontalFlip(),
+        transforms.RandomCrop(size=64,
+                              padding=int(64*0.125),
+                              padding_mode='reflect'),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=food101_mean, std=food101_std)])
+    UnlabeledSet,TestSet = get_unlabel_food101(root, transform_labeled, TransformFix(mean=food101_mean, std=food101_std))
+    logger.info("Dataset: food101")
+    return UnlabeledSet, TestSet
 
 
 def x_u_split(labels,
@@ -142,6 +155,7 @@ class TransformFix(object):
         self.normalize = transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize(mean=mean, std=std)])
+        self.byol = get_simclr_data_transforms([64,64], food101_mean, food101_std)
 
     def __call__(self, x):
         weak = self.weak(x)
@@ -201,4 +215,5 @@ class CIFAR100SSL(datasets.CIFAR100):
 
 DATASET_GETTERS = {'cifar10': get_cifar10,
                    'cifar100': get_cifar100,
-                   'food101': get_food101}
+                   'food101': get_food101,
+                   'food101unlabel': get_food101_unlabel}

@@ -94,6 +94,29 @@ def get_food101Data(path,LabeledPercent,labeled_tranform,unlabeled_transform):
     return LabeledSet,UnlabeledSet,TestSet
 
 
+def get_unlabel_food101(path, labeled_transform, unlabeled_transform):
+    i=0
+    class_label={}
+    with open(os.path.join(path,'classes.txt'), 'r') as f:
+        line = f.readline()
+        while(line):
+            class_label[line.replace("\n","")] = i
+            i+=1
+            line = f.readline()
+    with open(os.path.join(path,'train.txt'), 'r') as f:
+        picture_list = f.readlines()
+    
+    UnlabeledList=[]
+    for pic in picture_list:
+        UnlabeledList.append(pic.replace("\n",""))
+    
+    with open(os.path.join(path,'test.txt'), 'r') as f:
+        test_list = f.readlines()
+    
+    UnlabeledSet = UnlabeledDataset(path,UnlabeledList,unlabeled_transform,class_label)
+    TestSet = TestDataset(path,test_list,labeled_transform,class_label)
+    return UnlabeledSet, TestSet
+
 # LabeledSet,UnlabeledSet,TestSet = get_food101('./food-101/',0.01)
 # labeled_trainloader = DataLoader(
 #     LabeledSet,

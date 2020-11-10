@@ -4,6 +4,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from models.mlp_head import MLPHead
 logger = logging.getLogger(__name__)
 
 
@@ -94,6 +95,11 @@ class WideResNet(nn.Module):
         self.fc = nn.Linear(channels[3], num_classes)
         self.channels = channels[3]
 
+        # projection MLP
+        num_ftrs = self.fc.in_features
+        self.l1 = nn.Linear(num_ftrs, num_ftrs)
+        self.l2 = nn.Linear(num_ftrs, 128)
+
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 nn.init.kaiming_normal_(m.weight,
@@ -114,7 +120,12 @@ class WideResNet(nn.Module):
         out = self.relu(self.bn1(out))
         out = F.adaptive_avg_pool2d(out, 1)
         out = out.view(-1, self.channels)
-        return self.fc(out)
+        
+        x = self.l1(out)
+        x = F.relu(x)
+        x = self.l2(x)
+
+        return self.fc(out), x
 
 
 def build_wideresnet(depth, widen_factor, dropout, num_classes):

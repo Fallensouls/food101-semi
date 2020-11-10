@@ -1,0 +1,980 @@
+        (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.001, affine=True, track_running_stats=True)
+        (relu1): LeakyReLU(negative_slope=0.1, inplace=True)
+        (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.001, affine=True, track_running_stats=True)
+        (relu2): LeakyReLU(negative_slope=0.1, inplace=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (convShortcut): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+      )
+      (1): BasicBlock(
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.001, affine=True, track_running_stats=True)
+        (relu1): LeakyReLU(negative_slope=0.1, inplace=True)
+        (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.001, affine=True, track_running_stats=True)
+        (relu2): LeakyReLU(negative_slope=0.1, inplace=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BasicBlock(
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.001, affine=True, track_running_stats=True)
+        (relu1): LeakyReLU(negative_slope=0.1, inplace=True)
+        (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.001, affine=True, track_running_stats=True)
+        (relu2): LeakyReLU(negative_slope=0.1, inplace=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BasicBlock(
+        (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.001, affine=True, track_running_stats=True)
+        (relu1): LeakyReLU(negative_slope=0.1, inplace=True)
+        (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.001, affine=True, track_running_stats=True)
+        (relu2): LeakyReLU(negative_slope=0.1, inplace=True)
+        (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.001, affine=True, track_running_stats=True)
+  (relu): LeakyReLU(negative_slope=0.1, inplace=True)
+  (fc): Linear(in_features=128, out_features=101, bias=True)
+)
+Train Epoch: 1/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 7.6032. Loss_x: 4.3347. Loss_u: 0.0000. Loss_s: 3.2685. Mask: 0.00. : 100%|██████████████████████| 1024/1024 [03:28<00:00,  4.92it/s]
+Test Iter:  527/ 527. Data: 0.035s. Batch: 0.056s. Loss: 4.4506. top1: 4.90. top5: 17.24. : 100%|██████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.81it/s]
+11/09/2020 16:51:10 - INFO - __main__ -   top-1 acc: 4.90
+11/09/2020 16:51:10 - INFO - __main__ -   top-5 acc: 17.24
+11/09/2020 16:51:10 - INFO - __main__ -   Best top-1 acc: 4.90
+11/09/2020 16:51:10 - INFO - __main__ -   Mean top-1 acc: 4.90
+
+Train Epoch: 2/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 7.3224. Loss_x: 4.1241. Loss_u: 0.0000. Loss_s: 3.1983. Mask: 0.00. : 100%|██████████████████████| 1024/1024 [03:30<00:00,  4.87it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 4.1875. top1: 8.53. top5: 24.71. : 100%|██████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.10it/s]
+11/09/2020 16:55:10 - INFO - __main__ -   top-1 acc: 8.53
+11/09/2020 16:55:10 - INFO - __main__ -   top-5 acc: 24.71
+11/09/2020 16:55:10 - INFO - __main__ -   Best top-1 acc: 8.53
+11/09/2020 16:55:10 - INFO - __main__ -   Mean top-1 acc: 6.71
+
+Train Epoch: 3/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 7.1027. Loss_x: 3.9439. Loss_u: 0.0001. Loss_s: 3.1587. Mask: 0.00. : 100%|██████████████████████| 1024/1024 [03:28<00:00,  4.92it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 3.8930. top1: 12.29. top5: 32.66. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.34it/s]
+11/09/2020 16:59:06 - INFO - __main__ -   top-1 acc: 12.29
+11/09/2020 16:59:06 - INFO - __main__ -   top-5 acc: 32.66
+11/09/2020 16:59:07 - INFO - __main__ -   Best top-1 acc: 12.29
+11/09/2020 16:59:07 - INFO - __main__ -   Mean top-1 acc: 8.57
+
+Train Epoch: 4/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 6.9022. Loss_x: 3.7737. Loss_u: 0.0006. Loss_s: 3.1280. Mask: 0.00. : 100%|██████████████████████| 1024/1024 [03:28<00:00,  4.92it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 3.4561. top1: 19.97. top5: 45.66. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.04it/s]
+11/09/2020 17:03:04 - INFO - __main__ -   top-1 acc: 19.97
+11/09/2020 17:03:04 - INFO - __main__ -   top-5 acc: 45.66
+11/09/2020 17:03:04 - INFO - __main__ -   Best top-1 acc: 19.97
+11/09/2020 17:03:04 - INFO - __main__ -   Mean top-1 acc: 11.42
+
+Train Epoch: 5/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 6.7239. Loss_x: 3.6167. Loss_u: 0.0015. Loss_s: 3.1056. Mask: 0.00. : 100%|██████████████████████| 1024/1024 [03:27<00:00,  4.92it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 3.0368. top1: 27.73. top5: 56.39. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.04it/s]
+11/09/2020 17:07:01 - INFO - __main__ -   top-1 acc: 27.73
+11/09/2020 17:07:01 - INFO - __main__ -   top-5 acc: 56.39
+11/09/2020 17:07:01 - INFO - __main__ -   Best top-1 acc: 27.73
+11/09/2020 17:07:01 - INFO - __main__ -   Mean top-1 acc: 14.68
+
+Train Epoch: 6/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 6.5598. Loss_x: 3.4690. Loss_u: 0.0025. Loss_s: 3.0883. Mask: 0.02. : 100%|██████████████████████| 1024/1024 [03:27<00:00,  4.94it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 2.7109. top1: 34.21. top5: 63.85. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.14it/s]
+11/09/2020 17:10:58 - INFO - __main__ -   top-1 acc: 34.21
+11/09/2020 17:10:58 - INFO - __main__ -   top-5 acc: 63.85
+11/09/2020 17:10:58 - INFO - __main__ -   Best top-1 acc: 34.21
+11/09/2020 17:10:58 - INFO - __main__ -   Mean top-1 acc: 17.94
+
+Train Epoch: 7/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 6.4121. Loss_x: 3.3341. Loss_u: 0.0040. Loss_s: 3.0740. Mask: 0.04. : 100%|██████████████████████| 1024/1024 [03:28<00:00,  4.91it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 2.4687. top1: 38.97. top5: 68.76. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.16it/s]
+11/09/2020 17:14:55 - INFO - __main__ -   top-1 acc: 38.97
+11/09/2020 17:14:55 - INFO - __main__ -   top-5 acc: 68.76
+11/09/2020 17:14:56 - INFO - __main__ -   Best top-1 acc: 38.97
+11/09/2020 17:14:56 - INFO - __main__ -   Mean top-1 acc: 20.94
+
+Train Epoch: 8/ 256. Iter: 1024/1024. LR: 0.0599. Loss: 6.2788. Loss_x: 3.2102. Loss_u: 0.0057. Loss_s: 3.0630. Mask: 0.12. : 100%|██████████████████████| 1024/1024 [03:28<00:00,  4.92it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 2.2528. top1: 43.63. top5: 72.56. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.19it/s]
+11/09/2020 17:18:53 - INFO - __main__ -   top-1 acc: 43.63
+11/09/2020 17:18:53 - INFO - __main__ -   top-5 acc: 72.56
+11/09/2020 17:18:53 - INFO - __main__ -   Best top-1 acc: 43.63
+11/09/2020 17:18:53 - INFO - __main__ -   Mean top-1 acc: 23.78
+
+Train Epoch: 9/ 256. Iter: 1024/1024. LR: 0.0599. Loss: 6.1603. Loss_x: 3.0992. Loss_u: 0.0076. Loss_s: 3.0535. Mask: 0.06. : 100%|██████████████████████| 1024/1024 [03:28<00:00,  4.92it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 2.0935. top1: 46.95. top5: 75.45. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.11it/s]
+11/09/2020 17:22:50 - INFO - __main__ -   top-1 acc: 46.95
+11/09/2020 17:22:50 - INFO - __main__ -   top-5 acc: 75.45
+11/09/2020 17:22:50 - INFO - __main__ -   Best top-1 acc: 46.95
+11/09/2020 17:22:50 - INFO - __main__ -   Mean top-1 acc: 26.36
+
+Train Epoch: 10/ 256. Iter: 1024/1024. LR: 0.0599. Loss: 6.0546. Loss_x: 2.9994. Loss_u: 0.0095. Loss_s: 3.0457. Mask: 0.08. : 100%|█████████████████████| 1024/1024 [03:27<00:00,  4.92it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 1.9805. top1: 49.55. top5: 77.52. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.12it/s]
+11/09/2020 17:26:47 - INFO - __main__ -   top-1 acc: 49.55
+11/09/2020 17:26:47 - INFO - __main__ -   top-5 acc: 77.52
+11/09/2020 17:26:48 - INFO - __main__ -   Best top-1 acc: 49.55
+11/09/2020 17:26:48 - INFO - __main__ -   Mean top-1 acc: 28.67
+
+Train Epoch: 11/ 256. Iter: 1024/1024. LR: 0.0599. Loss: 5.9585. Loss_x: 2.9082. Loss_u: 0.0116. Loss_s: 3.0387. Mask: 0.00. : 100%|█████████████████████| 1024/1024 [03:27<00:00,  4.93it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 1.8945. top1: 51.54. top5: 78.74. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.12it/s]
+11/09/2020 17:30:44 - INFO - __main__ -   top-1 acc: 51.54
+11/09/2020 17:30:44 - INFO - __main__ -   top-5 acc: 78.74
+11/09/2020 17:30:45 - INFO - __main__ -   Best top-1 acc: 51.54
+11/09/2020 17:30:45 - INFO - __main__ -   Mean top-1 acc: 30.75
+
+Train Epoch: 12/ 256. Iter: 1024/1024. LR: 0.0599. Loss: 5.8719. Loss_x: 2.8249. Loss_u: 0.0139. Loss_s: 3.0330. Mask: 0.04. : 100%|█████████████████████| 1024/1024 [03:28<00:00,  4.92it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.055s. Loss: 1.8307. top1: 52.91. top5: 79.83. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.29it/s]
+11/09/2020 17:34:41 - INFO - __main__ -   top-1 acc: 52.91
+11/09/2020 17:34:41 - INFO - __main__ -   top-5 acc: 79.83
+11/09/2020 17:34:42 - INFO - __main__ -   Best top-1 acc: 52.91
+11/09/2020 17:34:42 - INFO - __main__ -   Mean top-1 acc: 32.60
+
+Train Epoch: 13/ 256. Iter: 1024/1024. LR: 0.0599. Loss: 5.7943. Loss_x: 2.7508. Loss_u: 0.0158. Loss_s: 3.0277. Mask: 0.17. : 100%|█████████████████████| 1024/1024 [03:28<00:00,  4.92it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 1.7780. top1: 54.01. top5: 80.77. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.17it/s]
+11/09/2020 17:38:39 - INFO - __main__ -   top-1 acc: 54.01
+11/09/2020 17:38:39 - INFO - __main__ -   top-5 acc: 80.77
+11/09/2020 17:38:39 - INFO - __main__ -   Best top-1 acc: 54.01
+11/09/2020 17:38:39 - INFO - __main__ -   Mean top-1 acc: 34.25
+
+Train Epoch: 14/ 256. Iter: 1024/1024. LR: 0.0598. Loss: 5.7235. Loss_x: 2.6827. Loss_u: 0.0177. Loss_s: 3.0232. Mask: 0.15. : 100%|█████████████████████| 1024/1024 [03:28<00:00,  4.91it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 1.7369. top1: 54.82. top5: 81.50. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.06it/s]
+11/09/2020 17:42:37 - INFO - __main__ -   top-1 acc: 54.82
+11/09/2020 17:42:37 - INFO - __main__ -   top-5 acc: 81.50
+11/09/2020 17:42:37 - INFO - __main__ -   Best top-1 acc: 54.82
+11/09/2020 17:42:37 - INFO - __main__ -   Mean top-1 acc: 35.72
+
+Train Epoch: 15/ 256. Iter: 1024/1024. LR: 0.0598. Loss: 5.6580. Loss_x: 2.6193. Loss_u: 0.0195. Loss_s: 3.0191. Mask: 0.04. : 100%|█████████████████████| 1024/1024 [03:30<00:00,  4.87it/s]
+Test Iter:  527/ 527. Data: 0.035s. Batch: 0.056s. Loss: 1.7088. top1: 55.73. top5: 81.99. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.76it/s]
+11/09/2020 17:46:36 - INFO - __main__ -   top-1 acc: 55.73
+11/09/2020 17:46:36 - INFO - __main__ -   top-5 acc: 81.99
+11/09/2020 17:46:37 - INFO - __main__ -   Best top-1 acc: 55.73
+11/09/2020 17:46:37 - INFO - __main__ -   Mean top-1 acc: 37.05
+
+Train Epoch: 16/ 256. Iter: 1024/1024. LR: 0.0598. Loss: 5.5982. Loss_x: 2.5615. Loss_u: 0.0213. Loss_s: 3.0154. Mask: 0.10. : 100%|█████████████████████| 1024/1024 [03:27<00:00,  4.93it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 1.6786. top1: 56.69. top5: 82.49. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.03it/s]
+11/09/2020 17:50:33 - INFO - __main__ -   top-1 acc: 56.69
+11/09/2020 17:50:33 - INFO - __main__ -   top-5 acc: 82.49
+11/09/2020 17:50:34 - INFO - __main__ -   Best top-1 acc: 56.69
+11/09/2020 17:50:34 - INFO - __main__ -   Mean top-1 acc: 38.28
+
+Train Epoch: 17/ 256. Iter: 1024/1024. LR: 0.0598. Loss: 5.5437. Loss_x: 2.5085. Loss_u: 0.0231. Loss_s: 3.0122. Mask: 0.02. : 100%|█████████████████████| 1024/1024 [03:29<00:00,  4.88it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 1.6555. top1: 57.22. top5: 82.82. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.02it/s]
+11/09/2020 17:54:33 - INFO - __main__ -   top-1 acc: 57.22
+11/09/2020 17:54:33 - INFO - __main__ -   top-5 acc: 82.82
+11/09/2020 17:54:33 - INFO - __main__ -   Best top-1 acc: 57.22
+11/09/2020 17:54:33 - INFO - __main__ -   Mean top-1 acc: 39.39
+
+Train Epoch: 18/ 256. Iter: 1024/1024. LR: 0.0597. Loss: 5.4921. Loss_x: 2.4582. Loss_u: 0.0247. Loss_s: 3.0091. Mask: 0.10. : 100%|█████████████████████| 1024/1024 [03:30<00:00,  4.87it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.056s. Loss: 1.6419. top1: 57.63. top5: 82.98. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.96it/s]
+11/09/2020 17:58:32 - INFO - __main__ -   top-1 acc: 57.63
+11/09/2020 17:58:32 - INFO - __main__ -   top-5 acc: 82.98
+11/09/2020 17:58:32 - INFO - __main__ -   Best top-1 acc: 57.63
+11/09/2020 17:58:32 - INFO - __main__ -   Mean top-1 acc: 40.40
+
+Train Epoch: 19/ 256. Iter: 1024/1024. LR: 0.0597. Loss: 5.4454. Loss_x: 2.4123. Loss_u: 0.0265. Loss_s: 3.0066. Mask: 0.08. : 100%|█████████████████████| 1024/1024 [03:29<00:00,  4.88it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.056s. Loss: 1.6318. top1: 58.19. top5: 83.23. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.98it/s]
+11/09/2020 18:02:31 - INFO - __main__ -   top-1 acc: 58.19
+11/09/2020 18:02:31 - INFO - __main__ -   top-5 acc: 83.23
+11/09/2020 18:02:32 - INFO - __main__ -   Best top-1 acc: 58.19
+11/09/2020 18:02:32 - INFO - __main__ -   Mean top-1 acc: 41.34
+
+Train Epoch: 20/ 256. Iter: 1024/1024. LR: 0.0597. Loss: 5.4017. Loss_x: 2.3693. Loss_u: 0.0282. Loss_s: 3.0042. Mask: 0.12. : 100%|█████████████████████| 1024/1024 [03:29<00:00,  4.88it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.056s. Loss: 1.6185. top1: 58.25. top5: 83.39. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.98it/s]
+11/09/2020 18:06:31 - INFO - __main__ -   top-1 acc: 58.25
+11/09/2020 18:06:31 - INFO - __main__ -   top-5 acc: 83.39
+11/09/2020 18:06:31 - INFO - __main__ -   Best top-1 acc: 58.25
+11/09/2020 18:06:31 - INFO - __main__ -   Mean top-1 acc: 42.19
+
+Train Epoch: 21/ 256. Iter: 1024/1024. LR: 0.0596. Loss: 5.3601. Loss_x: 2.3287. Loss_u: 0.0295. Loss_s: 3.0019. Mask: 0.10. : 100%|█████████████████████| 1024/1024 [03:31<00:00,  4.85it/s]
+Test Iter:  527/ 527. Data: 0.035s. Batch: 0.057s. Loss: 1.6058. top1: 58.60. top5: 83.43. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.66it/s]
+11/09/2020 18:10:32 - INFO - __main__ -   top-1 acc: 58.60
+11/09/2020 18:10:32 - INFO - __main__ -   top-5 acc: 83.43
+11/09/2020 18:10:32 - INFO - __main__ -   Best top-1 acc: 58.60
+11/09/2020 18:10:32 - INFO - __main__ -   Mean top-1 acc: 44.87
+
+Train Epoch: 22/ 256. Iter: 1024/1024. LR: 0.0596. Loss: 5.3216. Loss_x: 2.2910. Loss_u: 0.0308. Loss_s: 2.9999. Mask: 0.12. : 100%|█████████████████████| 1024/1024 [03:29<00:00,  4.89it/s]
+Test Iter:  527/ 527. Data: 0.035s. Batch: 0.056s. Loss: 1.6051. top1: 58.87. top5: 83.58. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.89it/s]
+11/09/2020 18:14:31 - INFO - __main__ -   top-1 acc: 58.87
+11/09/2020 18:14:31 - INFO - __main__ -   top-5 acc: 83.58
+11/09/2020 18:14:31 - INFO - __main__ -   Best top-1 acc: 58.87
+11/09/2020 18:14:31 - INFO - __main__ -   Mean top-1 acc: 47.39
+
+Train Epoch: 23/ 256. Iter: 1024/1024. LR: 0.0595. Loss: 5.2861. Loss_x: 2.2558. Loss_u: 0.0323. Loss_s: 2.9980. Mask: 0.17. : 100%|█████████████████████| 1024/1024 [03:29<00:00,  4.89it/s]
+Test Iter:  527/ 527. Data: 0.035s. Batch: 0.056s. Loss: 1.5892. top1: 59.24. top5: 83.78. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.84it/s]
+11/09/2020 18:18:30 - INFO - __main__ -   top-1 acc: 59.24
+11/09/2020 18:18:30 - INFO - __main__ -   top-5 acc: 83.78
+11/09/2020 18:18:30 - INFO - __main__ -   Best top-1 acc: 59.24
+11/09/2020 18:18:30 - INFO - __main__ -   Mean top-1 acc: 49.74
+
+Train Epoch: 24/ 256. Iter: 1024/1024. LR: 0.0595. Loss: 5.2525. Loss_x: 2.2226. Loss_u: 0.0336. Loss_s: 2.9963. Mask: 0.08. : 100%|█████████████████████| 1024/1024 [03:29<00:00,  4.89it/s]
+Test Iter:  527/ 527. Data: 0.035s. Batch: 0.056s. Loss: 1.5832. top1: 59.52. top5: 83.93. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.91it/s]
+11/09/2020 18:22:29 - INFO - __main__ -   top-1 acc: 59.52
+11/09/2020 18:22:29 - INFO - __main__ -   top-5 acc: 83.93
+11/09/2020 18:22:30 - INFO - __main__ -   Best top-1 acc: 59.52
+11/09/2020 18:22:30 - INFO - __main__ -   Mean top-1 acc: 51.71
+
+Train Epoch: 25/ 256. Iter: 1024/1024. LR: 0.0595. Loss: 5.2200. Loss_x: 2.1905. Loss_u: 0.0349. Loss_s: 2.9945. Mask: 0.19. : 100%|█████████████████████| 1024/1024 [03:29<00:00,  4.89it/s]
+Test Iter:  527/ 527. Data: 0.035s. Batch: 0.056s. Loss: 1.5814. top1: 59.85. top5: 84.01. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.78it/s]
+11/09/2020 18:26:28 - INFO - __main__ -   top-1 acc: 59.85
+11/09/2020 18:26:28 - INFO - __main__ -   top-5 acc: 84.01
+11/09/2020 18:26:29 - INFO - __main__ -   Best top-1 acc: 59.85
+11/09/2020 18:26:29 - INFO - __main__ -   Mean top-1 acc: 53.32
+
+Train Epoch: 26/ 256. Iter: 1024/1024. LR: 0.0594. Loss: 5.1901. Loss_x: 2.1610. Loss_u: 0.0361. Loss_s: 2.9931. Mask: 0.19. : 100%|█████████████████████| 1024/1024 [03:29<00:00,  4.89it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.056s. Loss: 1.5780. top1: 59.47. top5: 84.30. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.95it/s]
+11/09/2020 18:30:27 - INFO - __main__ -   top-1 acc: 59.47
+11/09/2020 18:30:27 - INFO - __main__ -   top-5 acc: 84.30
+11/09/2020 18:30:28 - INFO - __main__ -   Best top-1 acc: 59.85
+11/09/2020 18:30:28 - INFO - __main__ -   Mean top-1 acc: 54.58
+
+Train Epoch: 27/ 256. Iter: 1024/1024. LR: 0.0594. Loss: 5.1618. Loss_x: 2.1328. Loss_u: 0.0373. Loss_s: 2.9917. Mask: 0.10. : 100%|█████████████████████| 1024/1024 [03:30<00:00,  4.87it/s]
+Test Iter:  527/ 527. Data: 0.037s. Batch: 0.059s. Loss: 1.5738. top1: 59.87. top5: 84.15. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:31<00:00, 16.92it/s]
+11/09/2020 18:34:29 - INFO - __main__ -   top-1 acc: 59.87
+11/09/2020 18:34:29 - INFO - __main__ -   top-5 acc: 84.15
+11/09/2020 18:34:29 - INFO - __main__ -   Best top-1 acc: 59.87
+11/09/2020 18:34:29 - INFO - __main__ -   Mean top-1 acc: 55.63
+
+Train Epoch: 28/ 256. Iter: 1024/1024. LR: 0.0593. Loss: 5.1347. Loss_x: 2.1058. Loss_u: 0.0385. Loss_s: 2.9904. Mask: 0.19. : 100%|█████████████████████| 1024/1024 [03:46<00:00,  4.52it/s]
+Test Iter:  527/ 527. Data: 0.038s. Batch: 0.059s. Loss: 1.5680. top1: 60.08. top5: 84.34. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:31<00:00, 16.86it/s]
+11/09/2020 18:38:47 - INFO - __main__ -   top-1 acc: 60.08
+11/09/2020 18:38:47 - INFO - __main__ -   top-5 acc: 84.34
+11/09/2020 18:38:47 - INFO - __main__ -   Best top-1 acc: 60.08
+11/09/2020 18:38:47 - INFO - __main__ -   Mean top-1 acc: 56.45
+
+Train Epoch: 29/ 256. Iter: 1024/1024. LR: 0.0593. Loss: 5.1087. Loss_x: 2.0801. Loss_u: 0.0395. Loss_s: 2.9891. Mask: 0.10. : 100%|█████████████████████| 1024/1024 [03:37<00:00,  4.72it/s]
+Test Iter:  527/ 527. Data: 0.036s. Batch: 0.057s. Loss: 1.5694. top1: 59.84. top5: 84.23. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.62it/s]
+11/09/2020 18:42:54 - INFO - __main__ -   top-1 acc: 59.84
+11/09/2020 18:42:54 - INFO - __main__ -   top-5 acc: 84.23
+11/09/2020 18:42:54 - INFO - __main__ -   Best top-1 acc: 60.08
+11/09/2020 18:42:54 - INFO - __main__ -   Mean top-1 acc: 57.09
+
+Train Epoch: 30/ 256. Iter: 1024/1024. LR: 0.0592. Loss: 5.0846. Loss_x: 2.0560. Loss_u: 0.0406. Loss_s: 2.9879. Mask: 0.17. : 100%|█████████████████████| 1024/1024 [03:30<00:00,  4.87it/s]
+Test Iter:  527/ 527. Data: 0.035s. Batch: 0.056s. Loss: 1.5677. top1: 60.14. top5: 84.50. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.74it/s]
+11/09/2020 18:46:54 - INFO - __main__ -   top-1 acc: 60.14
+11/09/2020 18:46:54 - INFO - __main__ -   top-5 acc: 84.50
+11/09/2020 18:46:54 - INFO - __main__ -   Best top-1 acc: 60.14
+11/09/2020 18:46:54 - INFO - __main__ -   Mean top-1 acc: 57.62
+
+Train Epoch: 31/ 256. Iter: 1024/1024. LR: 0.0592. Loss: 5.0611. Loss_x: 2.0327. Loss_u: 0.0415. Loss_s: 2.9868. Mask: 0.21. : 100%|█████████████████████| 1024/1024 [03:32<00:00,  4.81it/s]
+Test Iter:  527/ 527. Data: 0.039s. Batch: 0.061s. Loss: 1.5688. top1: 59.81. top5: 84.51. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:32<00:00, 16.45it/s]
+11/09/2020 18:50:59 - INFO - __main__ -   top-1 acc: 59.81
+11/09/2020 18:50:59 - INFO - __main__ -   top-5 acc: 84.51
+11/09/2020 18:50:59 - INFO - __main__ -   Best top-1 acc: 60.14
+11/09/2020 18:50:59 - INFO - __main__ -   Mean top-1 acc: 58.04
+
+Train Epoch: 32/ 256. Iter: 1024/1024. LR: 0.0591. Loss: 5.0383. Loss_x: 2.0101. Loss_u: 0.0424. Loss_s: 2.9858. Mask: 0.10. : 100%|█████████████████████| 1024/1024 [03:35<00:00,  4.74it/s]
+Test Iter:  527/ 527. Data: 0.036s. Batch: 0.057s. Loss: 1.5679. top1: 60.18. top5: 84.57. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:30<00:00, 17.51it/s]
+11/09/2020 18:55:05 - INFO - __main__ -   top-1 acc: 60.18
+11/09/2020 18:55:05 - INFO - __main__ -   top-5 acc: 84.57
+11/09/2020 18:55:05 - INFO - __main__ -   Best top-1 acc: 60.18
+11/09/2020 18:55:05 - INFO - __main__ -   Mean top-1 acc: 58.40
+
+Train Epoch: 33/ 256. Iter: 1024/1024. LR: 0.0591. Loss: 5.0172. Loss_x: 1.9890. Loss_u: 0.0434. Loss_s: 2.9848. Mask: 0.10. : 100%|█████████████████████| 1024/1024 [03:30<00:00,  4.86it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5644. top1: 60.34. top5: 84.42. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.51it/s]
+11/09/2020 18:59:05 - INFO - __main__ -   top-1 acc: 60.34
+11/09/2020 18:59:05 - INFO - __main__ -   top-5 acc: 84.42
+11/09/2020 18:59:05 - INFO - __main__ -   Best top-1 acc: 60.34
+11/09/2020 18:59:05 - INFO - __main__ -   Mean top-1 acc: 58.72
+
+Train Epoch: 34/ 256. Iter: 1024/1024. LR: 0.0590. Loss: 4.9973. Loss_x: 1.9692. Loss_u: 0.0444. Loss_s: 2.9838. Mask: 0.10. : 100%|█████████████████████| 1024/1024 [03:31<00:00,  4.84it/s]
+Test Iter:  527/ 527. Data: 0.035s. Batch: 0.056s. Loss: 1.5634. top1: 60.46. top5: 84.65. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.92it/s]
+11/09/2020 19:03:06 - INFO - __main__ -   top-1 acc: 60.46
+11/09/2020 19:03:06 - INFO - __main__ -   top-5 acc: 84.65
+11/09/2020 19:03:06 - INFO - __main__ -   Best top-1 acc: 60.46
+11/09/2020 19:03:06 - INFO - __main__ -   Mean top-1 acc: 59.00
+
+Train Epoch: 35/ 256. Iter: 1024/1024. LR: 0.0589. Loss: 4.9775. Loss_x: 1.9495. Loss_u: 0.0452. Loss_s: 2.9829. Mask: 0.19. : 100%|█████████████████████| 1024/1024 [03:29<00:00,  4.90it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.056s. Loss: 1.5550. top1: 60.61. top5: 84.75. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.98it/s]
+11/09/2020 19:07:04 - INFO - __main__ -   top-1 acc: 60.61
+11/09/2020 19:07:04 - INFO - __main__ -   top-5 acc: 84.75
+11/09/2020 19:07:05 - INFO - __main__ -   Best top-1 acc: 60.61
+11/09/2020 19:07:05 - INFO - __main__ -   Mean top-1 acc: 59.24
+
+Train Epoch: 36/ 256. Iter: 1024/1024. LR: 0.0589. Loss: 4.9592. Loss_x: 1.9311. Loss_u: 0.0461. Loss_s: 2.9820. Mask: 0.10. : 100%|█████████████████████| 1024/1024 [03:29<00:00,  4.89it/s]
+Test Iter:  527/ 527. Data: 0.035s. Batch: 0.056s. Loss: 1.5581. top1: 60.62. top5: 84.58. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.87it/s]
+11/09/2020 19:11:03 - INFO - __main__ -   top-1 acc: 60.62
+11/09/2020 19:11:03 - INFO - __main__ -   top-5 acc: 84.58
+11/09/2020 19:11:03 - INFO - __main__ -   Best top-1 acc: 60.62
+11/09/2020 19:11:03 - INFO - __main__ -   Mean top-1 acc: 59.44
+
+Train Epoch: 37/ 256. Iter: 1024/1024. LR: 0.0588. Loss: 4.9411. Loss_x: 1.9131. Loss_u: 0.0469. Loss_s: 2.9812. Mask: 0.19. : 100%|█████████████████████| 1024/1024 [03:28<00:00,  4.91it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 1.5628. top1: 60.73. top5: 84.75. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.09it/s]
+11/09/2020 19:15:01 - INFO - __main__ -   top-1 acc: 60.73
+11/09/2020 19:15:01 - INFO - __main__ -   top-5 acc: 84.75
+11/09/2020 19:15:01 - INFO - __main__ -   Best top-1 acc: 60.73
+11/09/2020 19:15:01 - INFO - __main__ -   Mean top-1 acc: 59.61
+
+Train Epoch: 38/ 256. Iter: 1024/1024. LR: 0.0588. Loss: 4.9239. Loss_x: 1.8959. Loss_u: 0.0477. Loss_s: 2.9804. Mask: 0.21. : 100%|█████████████████████| 1024/1024 [03:31<00:00,  4.85it/s]
+Test Iter:  527/ 527. Data: 0.036s. Batch: 0.057s. Loss: 1.5647. top1: 60.78. top5: 84.60. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:30<00:00, 17.42it/s]
+11/09/2020 19:19:03 - INFO - __main__ -   top-1 acc: 60.78
+11/09/2020 19:19:03 - INFO - __main__ -   top-5 acc: 84.60
+11/09/2020 19:19:03 - INFO - __main__ -   Best top-1 acc: 60.78
+11/09/2020 19:19:03 - INFO - __main__ -   Mean top-1 acc: 59.77
+
+Train Epoch: 39/ 256. Iter: 1024/1024. LR: 0.0587. Loss: 4.9073. Loss_x: 1.8791. Loss_u: 0.0485. Loss_s: 2.9797. Mask: 0.31. : 100%|█████████████████████| 1024/1024 [03:33<00:00,  4.80it/s]
+Test Iter:  527/ 527. Data: 0.035s. Batch: 0.056s. Loss: 1.5647. top1: 60.69. top5: 84.79. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 17.89it/s]
+11/09/2020 19:23:05 - INFO - __main__ -   top-1 acc: 60.69
+11/09/2020 19:23:05 - INFO - __main__ -   top-5 acc: 84.79
+11/09/2020 19:23:05 - INFO - __main__ -   Best top-1 acc: 60.78
+11/09/2020 19:23:05 - INFO - __main__ -   Mean top-1 acc: 59.90
+
+Train Epoch: 40/ 256. Iter:   72/1024. LR: 0.0587. Loss: 4.9062. Loss_x: 1.8780. Loss_u: 0.0486. Loss_s: 2.9796. Mask: 0.12. :   7%|█▌                     | 72/1024 [00:14<03:15,  4.86it/s]^CTraceback (most recent call last):
+  File "simclr.py", line 538, in <module>
+  File "simclr.py", line 332, in main
+    model, optimizer, ema_model, scheduler, writer)
+  File "simclr.py", line 408, in train
+    losses_x.update(Lx.item())
+KeyboardInterrupt
+Train Epoch: 40/ 256. Iter:   72/1024. LR: 0.0587. Loss: 4.9062. Loss_x: 1.8780. Loss_u: 0.0486. Loss_s: 2.9796. Mask: 0.12. :   7%|█▌                     | 72/1024 [00:15<03:18,  4.80it/s]
+➜  food101-semi git:(main) ✗ python simclr.py --dataset food101 --num-labeled 4000 --arch wideresnet --batch-size 48 --lr 0.06 --out results/food@0.2c --per-labeled 0.2       
+
+/usr/local/anaconda3/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:541: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/usr/local/anaconda3/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:542: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/usr/local/anaconda3/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:543: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/usr/local/anaconda3/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:544: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/usr/local/anaconda3/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:545: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/usr/local/anaconda3/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:550: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+11/09/2020 19:23:58 - WARNING - __main__ -   Process rank: -1, device: cuda:0, n_gpu: 1, distributed training: False, 16-bits training: False
+11/09/2020 19:23:58 - INFO - __main__ -   {'T': 1, 'amp': False, 'arch': 'wideresnet', 'batch_size': 48, 'dataset': 'food101', 'device': device(type='cuda', index=0), 'ema_decay': 0.999, 'eval_steps': 1024, 'gpu_id': 0, 'k_img': 65536, 'lambda_u': 1, 'local_rank': -1, 'lr': 0.06, 'mu': 4, 'n_gpu': 1, 'nesterov': True, 'no_progress': False, 'num_labeled': 4000, 'num_workers': 4, 'opt_level': 'O1', 'out': 'results/food@0.2c', 'per_labeled': 0.2, 'resume': '', 'seed': 5, 'start_epoch': 0, 'threshold': 0.95, 'total_steps': 262144, 'use_ema': True, 'warmup': 0, 'wdecay': 0.0005, 'world_size': 1}
+11/09/2020 19:23:58 - INFO - dataset.cifar -   Dataset: food101
+11/09/2020 19:23:58 - INFO - models.wideresnet -   Model: WideResNet 28x2
+11/09/2020 19:23:58 - INFO - __main__ -   Total params: 1.51M
+11/09/2020 19:24:00 - INFO - __main__ -   ***** Running training *****
+11/09/2020 19:24:00 - INFO - __main__ -     Task = food101@4000
+11/09/2020 19:24:00 - INFO - __main__ -     Num Epochs = 256
+11/09/2020 19:24:00 - INFO - __main__ -     Batch size per GPU = 48
+11/09/2020 19:24:00 - INFO - __main__ -     Total train batch size = 48
+11/09/2020 19:24:00 - INFO - __main__ -     Total optimization steps = 262144
+Train Epoch: 1/ 256. Iter:    1/1024. LR: 0.0600. Loss: 10.4040. Loss_x: 4.6852. Loss_u: 0.0000. Loss_s: 5.7188. Mask: 0.00. :   0%|                        | 1/1024 [00:01<32:46,  1.92s/it]^CTraceback (most recent call last):
+  File "simclr.py", line 537, in <module>
+    main()
+  File "simclr.py", line 332, in main
+    model, optimizer, ema_model, scheduler, writer)
+  File "simclr.py", line 407, in train
+    losses.update(loss.item())
+KeyboardInterrupt
+Exception in thread Thread-3:
+Traceback (most recent call last):
+  File "/usr/local/anaconda3/lib/python3.6/threading.py", line 916, in _bootstrap_inner
+    self.run()
+  File "/usr/local/anaconda3/lib/python3.6/threading.py", line 864, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/hatsunemiku/.local/lib/python3.6/site-packages/torch/utils/data/_utils/pin_memory.py", line 25, in _pin_memory_loop
+    r = in_queue.get(timeout=MP_STATUS_CHECK_INTERVAL)
+  File "/usr/local/anaconda3/lib/python3.6/multiprocessing/queues.py", line 113, in get
+    return _ForkingPickler.loads(res)
+  File "/home/hatsunemiku/.local/lib/python3.6/site-packages/torch/multiprocessing/reductions.py", line 294, in rebuild_storage_fd
+    fd = df.detach()
+  File "/usr/local/anaconda3/lib/python3.6/multiprocessing/resource_sharer.py", line 57, in detach
+    with _resource_sharer.get_connection(self._id) as conn:
+  File "/usr/local/anaconda3/lib/python3.6/multiprocessing/resource_sharer.py", line 87, in get_connection
+    c = Client(address, authkey=process.current_process().authkey)
+  File "/usr/local/anaconda3/lib/python3.6/multiprocessing/connection.py", line 487, in Client
+    c = SocketClient(address)
+  File "/usr/local/anaconda3/lib/python3.6/multiprocessing/connection.py", line 614, in SocketClient
+    s.connect(address)
+FileNotFoundError: [Errno 2] No such file or directory
+
+Train Epoch: 1/ 256. Iter:    1/1024. LR: 0.0600. Loss: 10.4040. Loss_x: 4.6852. Loss_u: 0.0000. Loss_s: 5.7188. Mask: 0.00. :   0%|                        | 1/1024 [00:02<44:29,  2.61s/it]
+➜  food101-semi git:(main) ✗ python simclr.py --dataset food101 --num-labeled 4000 --arch wideresnet --batch-size 48 --lr 0.06 --out results/food@0.2d --per-labeled 0.2
+
+/usr/local/anaconda3/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:541: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/usr/local/anaconda3/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:542: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/usr/local/anaconda3/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:543: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/usr/local/anaconda3/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:544: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/usr/local/anaconda3/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:545: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/usr/local/anaconda3/lib/python3.6/site-packages/tensorboard/compat/tensorflow_stub/dtypes.py:550: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+11/09/2020 19:24:10 - WARNING - __main__ -   Process rank: -1, device: cuda:0, n_gpu: 1, distributed training: False, 16-bits training: False
+11/09/2020 19:24:10 - INFO - __main__ -   {'T': 1, 'amp': False, 'arch': 'wideresnet', 'batch_size': 48, 'dataset': 'food101', 'device': device(type='cuda', index=0), 'ema_decay': 0.999, 'eval_steps': 1024, 'gpu_id': 0, 'k_img': 65536, 'lambda_u': 1, 'local_rank': -1, 'lr': 0.06, 'mu': 4, 'n_gpu': 1, 'nesterov': True, 'no_progress': False, 'num_labeled': 4000, 'num_workers': 4, 'opt_level': 'O1', 'out': 'results/food@0.2d', 'per_labeled': 0.2, 'resume': '', 'seed': 5, 'start_epoch': 0, 'threshold': 0.95, 'total_steps': 262144, 'use_ema': True, 'warmup': 0, 'wdecay': 0.0005, 'world_size': 1}
+11/09/2020 19:24:10 - INFO - dataset.cifar -   Dataset: food101
+11/09/2020 19:24:10 - INFO - models.wideresnet -   Model: WideResNet 28x2
+11/09/2020 19:24:10 - INFO - __main__ -   Total params: 1.51M
+11/09/2020 19:24:12 - INFO - __main__ -   ***** Running training *****
+11/09/2020 19:24:12 - INFO - __main__ -     Task = food101@4000
+11/09/2020 19:24:12 - INFO - __main__ -     Num Epochs = 256
+11/09/2020 19:24:12 - INFO - __main__ -     Batch size per GPU = 48
+11/09/2020 19:24:12 - INFO - __main__ -     Total train batch size = 48
+11/09/2020 19:24:12 - INFO - __main__ -     Total optimization steps = 262144
+Train Epoch: 1/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 8.6792. Loss_x: 4.1598. Loss_u: 0.0000. Loss_s: 4.5194. Mask: 0.00. : 100%|██████████████████████| 1024/1024 [09:58<00:00,  1.71it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 4.3588. top1: 4.99. top5: 16.86. : 100%|██████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.07it/s]
+11/09/2020 19:34:40 - INFO - __main__ -   top-1 acc: 4.99
+11/09/2020 19:34:40 - INFO - __main__ -   top-5 acc: 16.86
+11/09/2020 19:34:40 - INFO - __main__ -   Best top-1 acc: 4.99
+11/09/2020 19:34:40 - INFO - __main__ -   Mean top-1 acc: 4.99
+
+Train Epoch: 2/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 8.3601. Loss_x: 3.8952. Loss_u: 0.0001. Loss_s: 4.4648. Mask: 0.00. : 100%|██████████████████████| 1024/1024 [10:13<00:00,  1.67it/s]
+Test Iter:  527/ 527. Data: 0.037s. Batch: 0.058s. Loss: 3.9526. top1: 11.17. top5: 30.34. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:30<00:00, 17.13it/s]
+11/09/2020 19:45:25 - INFO - __main__ -   top-1 acc: 11.17
+11/09/2020 19:45:25 - INFO - __main__ -   top-5 acc: 30.34
+11/09/2020 19:45:25 - INFO - __main__ -   Best top-1 acc: 11.17
+11/09/2020 19:45:25 - INFO - __main__ -   Mean top-1 acc: 8.08
+
+Train Epoch: 3/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 8.1107. Loss_x: 3.6810. Loss_u: 0.0007. Loss_s: 4.4291. Mask: 0.00. : 100%|██████████████████████| 1024/1024 [10:22<00:00,  1.65it/s]
+Test Iter:  527/ 527. Data: 0.037s. Batch: 0.058s. Loss: 3.4573. top1: 20.45. top5: 45.82. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:30<00:00, 17.16it/s]
+11/09/2020 19:56:18 - INFO - __main__ -   top-1 acc: 20.45
+11/09/2020 19:56:18 - INFO - __main__ -   top-5 acc: 45.82
+11/09/2020 19:56:18 - INFO - __main__ -   Best top-1 acc: 20.45
+11/09/2020 19:56:18 - INFO - __main__ -   Mean top-1 acc: 12.20
+
+Train Epoch: 4/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 7.9022. Loss_x: 3.4961. Loss_u: 0.0016. Loss_s: 4.4045. Mask: 0.01. : 100%|██████████████████████| 1024/1024 [09:59<00:00,  1.71it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 2.9683. top1: 29.23. top5: 58.30. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.02it/s]
+11/09/2020 20:06:47 - INFO - __main__ -   top-1 acc: 29.23
+11/09/2020 20:06:47 - INFO - __main__ -   top-5 acc: 58.30
+11/09/2020 20:06:47 - INFO - __main__ -   Best top-1 acc: 29.23
+11/09/2020 20:06:47 - INFO - __main__ -   Mean top-1 acc: 16.46
+
+Train Epoch: 5/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 7.7217. Loss_x: 3.3315. Loss_u: 0.0032. Loss_s: 4.3870. Mask: 0.03. : 100%|██████████████████████| 1024/1024 [09:58<00:00,  1.71it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 2.6506. top1: 35.44. top5: 65.09. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.03it/s]
+11/09/2020 20:17:14 - INFO - __main__ -   top-1 acc: 35.44
+11/09/2020 20:17:14 - INFO - __main__ -   top-5 acc: 65.09
+11/09/2020 20:17:14 - INFO - __main__ -   Best top-1 acc: 35.44
+11/09/2020 20:17:14 - INFO - __main__ -   Mean top-1 acc: 20.26
+
+Train Epoch: 6/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 7.5628. Loss_x: 3.1836. Loss_u: 0.0053. Loss_s: 4.3738. Mask: 0.04. : 100%|██████████████████████| 1024/1024 [10:33<00:00,  1.62it/s]
+Test Iter:  527/ 527. Data: 0.043s. Batch: 0.065s. Loss: 2.3821. top1: 40.90. top5: 70.29. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:34<00:00, 15.42it/s]
+11/09/2020 20:28:22 - INFO - __main__ -   top-1 acc: 40.90
+11/09/2020 20:28:22 - INFO - __main__ -   top-5 acc: 70.29
+11/09/2020 20:28:22 - INFO - __main__ -   Best top-1 acc: 40.90
+11/09/2020 20:28:22 - INFO - __main__ -   Mean top-1 acc: 23.70
+
+Train Epoch: 7/ 256. Iter: 1024/1024. LR: 0.0600. Loss: 7.4230. Loss_x: 3.0522. Loss_u: 0.0078. Loss_s: 4.3630. Mask: 0.08. : 100%|██████████████████████| 1024/1024 [10:44<00:00,  1.59it/s]
+Test Iter:  527/ 527. Data: 0.043s. Batch: 0.065s. Loss: 2.1747. top1: 45.08. top5: 73.89. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:34<00:00, 15.28it/s]
+11/09/2020 20:39:41 - INFO - __main__ -   top-1 acc: 45.08
+11/09/2020 20:39:41 - INFO - __main__ -   top-5 acc: 73.89
+11/09/2020 20:39:41 - INFO - __main__ -   Best top-1 acc: 45.08
+11/09/2020 20:39:41 - INFO - __main__ -   Mean top-1 acc: 26.75
+
+Train Epoch: 8/ 256. Iter: 1024/1024. LR: 0.0599. Loss: 7.3003. Loss_x: 2.9353. Loss_u: 0.0106. Loss_s: 4.3545. Mask: 0.05. : 100%|██████████████████████| 1024/1024 [10:43<00:00,  1.59it/s]
+Test Iter:  527/ 527. Data: 0.041s. Batch: 0.063s. Loss: 2.0113. top1: 48.76. top5: 77.00. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:33<00:00, 15.85it/s]
+11/09/2020 20:50:58 - INFO - __main__ -   top-1 acc: 48.76
+11/09/2020 20:50:58 - INFO - __main__ -   top-5 acc: 77.00
+11/09/2020 20:50:58 - INFO - __main__ -   Best top-1 acc: 48.76
+11/09/2020 20:50:58 - INFO - __main__ -   Mean top-1 acc: 29.50
+
+Train Epoch: 9/ 256. Iter: 1024/1024. LR: 0.0599. Loss: 7.1938. Loss_x: 2.8331. Loss_u: 0.0133. Loss_s: 4.3474. Mask: 0.07. : 100%|██████████████████████| 1024/1024 [10:00<00:00,  1.70it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.9005. top1: 51.12. top5: 78.82. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.34it/s]
+11/09/2020 21:01:28 - INFO - __main__ -   top-1 acc: 51.12
+11/09/2020 21:01:28 - INFO - __main__ -   top-5 acc: 78.82
+11/09/2020 21:01:28 - INFO - __main__ -   Best top-1 acc: 51.12
+11/09/2020 21:01:28 - INFO - __main__ -   Mean top-1 acc: 31.91
+
+Train Epoch: 10/ 256. Iter: 1024/1024. LR: 0.0599. Loss: 7.0992. Loss_x: 2.7417. Loss_u: 0.0162. Loss_s: 4.3413. Mask: 0.06. : 100%|█████████████████████| 1024/1024 [09:53<00:00,  1.72it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.8297. top1: 52.72. top5: 79.60. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.68it/s]
+11/09/2020 21:11:50 - INFO - __main__ -   top-1 acc: 52.72
+11/09/2020 21:11:50 - INFO - __main__ -   top-5 acc: 79.60
+11/09/2020 21:11:50 - INFO - __main__ -   Best top-1 acc: 52.72
+11/09/2020 21:11:50 - INFO - __main__ -   Mean top-1 acc: 33.99
+
+Train Epoch: 11/ 256. Iter: 1024/1024. LR: 0.0599. Loss: 7.0129. Loss_x: 2.6582. Loss_u: 0.0188. Loss_s: 4.3359. Mask: 0.08. : 100%|█████████████████████| 1024/1024 [09:53<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.7728. top1: 54.17. top5: 80.95. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.42it/s]
+11/09/2020 21:22:12 - INFO - __main__ -   top-1 acc: 54.17
+11/09/2020 21:22:12 - INFO - __main__ -   top-5 acc: 80.95
+11/09/2020 21:22:12 - INFO - __main__ -   Best top-1 acc: 54.17
+11/09/2020 21:22:12 - INFO - __main__ -   Mean top-1 acc: 35.82
+
+Train Epoch: 12/ 256. Iter: 1024/1024. LR: 0.0599. Loss: 6.9359. Loss_x: 2.5832. Loss_u: 0.0214. Loss_s: 4.3313. Mask: 0.09. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.7236. top1: 55.27. top5: 81.63. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.57it/s]
+11/09/2020 21:32:32 - INFO - __main__ -   top-1 acc: 55.27
+11/09/2020 21:32:32 - INFO - __main__ -   top-5 acc: 81.63
+11/09/2020 21:32:32 - INFO - __main__ -   Best top-1 acc: 55.27
+11/09/2020 21:32:32 - INFO - __main__ -   Mean top-1 acc: 37.44
+
+Train Epoch: 13/ 256. Iter: 1024/1024. LR: 0.0599. Loss: 6.8670. Loss_x: 2.5159. Loss_u: 0.0238. Loss_s: 4.3272. Mask: 0.14. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.6862. top1: 56.29. top5: 82.13. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.56it/s]
+11/09/2020 21:42:54 - INFO - __main__ -   top-1 acc: 56.29
+11/09/2020 21:42:54 - INFO - __main__ -   top-5 acc: 82.13
+11/09/2020 21:42:54 - INFO - __main__ -   Best top-1 acc: 56.29
+11/09/2020 21:42:54 - INFO - __main__ -   Mean top-1 acc: 38.89
+
+Train Epoch: 14/ 256. Iter: 1024/1024. LR: 0.0598. Loss: 6.8042. Loss_x: 2.4547. Loss_u: 0.0260. Loss_s: 4.3235. Mask: 0.12. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.6658. top1: 57.07. top5: 82.53. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.49it/s]
+11/09/2020 21:53:14 - INFO - __main__ -   top-1 acc: 57.07
+11/09/2020 21:53:14 - INFO - __main__ -   top-5 acc: 82.53
+11/09/2020 21:53:15 - INFO - __main__ -   Best top-1 acc: 57.07
+11/09/2020 21:53:15 - INFO - __main__ -   Mean top-1 acc: 40.19
+
+Train Epoch: 15/ 256. Iter: 1024/1024. LR: 0.0598. Loss: 6.7456. Loss_x: 2.3973. Loss_u: 0.0281. Loss_s: 4.3201. Mask: 0.14. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.6494. top1: 57.38. top5: 82.90. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.56it/s]
+11/09/2020 22:03:35 - INFO - __main__ -   top-1 acc: 57.38
+11/09/2020 22:03:35 - INFO - __main__ -   top-5 acc: 82.90
+11/09/2020 22:03:35 - INFO - __main__ -   Best top-1 acc: 57.38
+11/09/2020 22:03:35 - INFO - __main__ -   Mean top-1 acc: 41.34
+
+Train Epoch: 16/ 256. Iter: 1024/1024. LR: 0.0598. Loss: 6.6931. Loss_x: 2.3457. Loss_u: 0.0302. Loss_s: 4.3172. Mask: 0.10. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.6387. top1: 57.62. top5: 82.99. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.61it/s]
+11/09/2020 22:13:55 - INFO - __main__ -   top-1 acc: 57.62
+11/09/2020 22:13:55 - INFO - __main__ -   top-5 acc: 82.99
+11/09/2020 22:13:55 - INFO - __main__ -   Best top-1 acc: 57.62
+11/09/2020 22:13:55 - INFO - __main__ -   Mean top-1 acc: 42.35
+
+Train Epoch: 17/ 256. Iter: 1024/1024. LR: 0.0598. Loss: 6.6447. Loss_x: 2.2982. Loss_u: 0.0320. Loss_s: 4.3145. Mask: 0.14. : 100%|█████████████████████| 1024/1024 [09:53<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.6213. top1: 58.22. top5: 83.32. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.51it/s]
+11/09/2020 22:24:17 - INFO - __main__ -   top-1 acc: 58.22
+11/09/2020 22:24:17 - INFO - __main__ -   top-5 acc: 83.32
+11/09/2020 22:24:18 - INFO - __main__ -   Best top-1 acc: 58.22
+11/09/2020 22:24:18 - INFO - __main__ -   Mean top-1 acc: 43.29
+
+Train Epoch: 18/ 256. Iter: 1024/1024. LR: 0.0597. Loss: 6.5986. Loss_x: 2.2528. Loss_u: 0.0338. Loss_s: 4.3121. Mask: 0.15. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.6154. top1: 58.55. top5: 83.43. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.62it/s]
+11/09/2020 22:34:38 - INFO - __main__ -   top-1 acc: 58.55
+11/09/2020 22:34:38 - INFO - __main__ -   top-5 acc: 83.43
+11/09/2020 22:34:39 - INFO - __main__ -   Best top-1 acc: 58.55
+11/09/2020 22:34:39 - INFO - __main__ -   Mean top-1 acc: 44.14
+
+Train Epoch: 19/ 256. Iter: 1024/1024. LR: 0.0597. Loss: 6.5564. Loss_x: 2.2111. Loss_u: 0.0355. Loss_s: 4.3098. Mask: 0.12. : 100%|█████████████████████| 1024/1024 [09:53<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.6060. top1: 58.50. top5: 83.58. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.62it/s]
+11/09/2020 22:45:00 - INFO - __main__ -   top-1 acc: 58.50
+11/09/2020 22:45:00 - INFO - __main__ -   top-5 acc: 83.58
+11/09/2020 22:45:00 - INFO - __main__ -   Best top-1 acc: 58.55
+11/09/2020 22:45:00 - INFO - __main__ -   Mean top-1 acc: 44.89
+
+Train Epoch: 20/ 256. Iter: 1024/1024. LR: 0.0597. Loss: 6.5173. Loss_x: 2.1724. Loss_u: 0.0372. Loss_s: 4.3077. Mask: 0.14. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5990. top1: 59.07. top5: 83.61. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.59it/s]
+11/09/2020 22:55:20 - INFO - __main__ -   top-1 acc: 59.07
+11/09/2020 22:55:20 - INFO - __main__ -   top-5 acc: 83.61
+11/09/2020 22:55:20 - INFO - __main__ -   Best top-1 acc: 59.07
+11/09/2020 22:55:20 - INFO - __main__ -   Mean top-1 acc: 45.60
+
+Train Epoch: 21/ 256. Iter: 1024/1024. LR: 0.0596. Loss: 6.4802. Loss_x: 2.1357. Loss_u: 0.0387. Loss_s: 4.3058. Mask: 0.14. : 100%|█████████████████████| 1024/1024 [09:53<00:00,  1.72it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.5850. top1: 59.35. top5: 83.81. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.73it/s]
+11/09/2020 23:05:42 - INFO - __main__ -   top-1 acc: 59.35
+11/09/2020 23:05:42 - INFO - __main__ -   top-5 acc: 83.81
+11/09/2020 23:05:42 - INFO - __main__ -   Best top-1 acc: 59.35
+11/09/2020 23:05:42 - INFO - __main__ -   Mean top-1 acc: 48.32
+
+Train Epoch: 22/ 256. Iter: 1024/1024. LR: 0.0596. Loss: 6.4454. Loss_x: 2.1011. Loss_u: 0.0402. Loss_s: 4.3040. Mask: 0.16. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5864. top1: 59.49. top5: 83.91. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.53it/s]
+11/09/2020 23:16:02 - INFO - __main__ -   top-1 acc: 59.49
+11/09/2020 23:16:02 - INFO - __main__ -   top-5 acc: 83.91
+11/09/2020 23:16:02 - INFO - __main__ -   Best top-1 acc: 59.49
+11/09/2020 23:16:02 - INFO - __main__ -   Mean top-1 acc: 50.73
+
+Train Epoch: 23/ 256. Iter: 1024/1024. LR: 0.0595. Loss: 6.4132. Loss_x: 2.0692. Loss_u: 0.0416. Loss_s: 4.3024. Mask: 0.11. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5751. top1: 59.75. top5: 84.16. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.44it/s]
+11/09/2020 23:26:23 - INFO - __main__ -   top-1 acc: 59.75
+11/09/2020 23:26:23 - INFO - __main__ -   top-5 acc: 84.16
+11/09/2020 23:26:23 - INFO - __main__ -   Best top-1 acc: 59.75
+11/09/2020 23:26:23 - INFO - __main__ -   Mean top-1 acc: 52.70
+
+Train Epoch: 24/ 256. Iter: 1024/1024. LR: 0.0595. Loss: 6.3829. Loss_x: 2.0389. Loss_u: 0.0431. Loss_s: 4.3009. Mask: 0.21. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5776. top1: 60.07. top5: 84.05. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.61it/s]
+11/09/2020 23:36:44 - INFO - __main__ -   top-1 acc: 60.07
+11/09/2020 23:36:44 - INFO - __main__ -   top-5 acc: 84.05
+11/09/2020 23:36:44 - INFO - __main__ -   Best top-1 acc: 60.07
+11/09/2020 23:36:44 - INFO - __main__ -   Mean top-1 acc: 54.24
+
+Train Epoch: 25/ 256. Iter: 1024/1024. LR: 0.0595. Loss: 6.3536. Loss_x: 2.0099. Loss_u: 0.0443. Loss_s: 4.2994. Mask: 0.19. : 100%|█████████████████████| 1024/1024 [09:53<00:00,  1.72it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 1.5779. top1: 59.95. top5: 84.12. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.32it/s]
+11/09/2020 23:47:06 - INFO - __main__ -   top-1 acc: 59.95
+11/09/2020 23:47:06 - INFO - __main__ -   top-5 acc: 84.12
+11/09/2020 23:47:06 - INFO - __main__ -   Best top-1 acc: 60.07
+11/09/2020 23:47:06 - INFO - __main__ -   Mean top-1 acc: 55.47
+
+Train Epoch: 26/ 256. Iter: 1024/1024. LR: 0.0594. Loss: 6.3261. Loss_x: 1.9824. Loss_u: 0.0456. Loss_s: 4.2981. Mask: 0.17. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5777. top1: 60.16. top5: 84.19. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.60it/s]
+11/09/2020 23:57:27 - INFO - __main__ -   top-1 acc: 60.16
+11/09/2020 23:57:27 - INFO - __main__ -   top-5 acc: 84.19
+11/09/2020 23:57:27 - INFO - __main__ -   Best top-1 acc: 60.16
+11/09/2020 23:57:27 - INFO - __main__ -   Mean top-1 acc: 56.43
+
+Train Epoch: 27/ 256. Iter: 1024/1024. LR: 0.0594. Loss: 6.3004. Loss_x: 1.9569. Loss_u: 0.0468. Loss_s: 4.2968. Mask: 0.13. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5704. top1: 60.48. top5: 84.40. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.63it/s]
+11/10/2020 00:07:47 - INFO - __main__ -   top-1 acc: 60.48
+11/10/2020 00:07:47 - INFO - __main__ -   top-5 acc: 84.40
+11/10/2020 00:07:47 - INFO - __main__ -   Best top-1 acc: 60.48
+11/10/2020 00:07:47 - INFO - __main__ -   Mean top-1 acc: 57.20
+
+Train Epoch: 28/ 256. Iter: 1024/1024. LR: 0.0593. Loss: 6.2754. Loss_x: 1.9320. Loss_u: 0.0479. Loss_s: 4.2955. Mask: 0.14. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5691. top1: 60.41. top5: 84.29. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.47it/s]
+11/10/2020 00:18:08 - INFO - __main__ -   top-1 acc: 60.41
+11/10/2020 00:18:08 - INFO - __main__ -   top-5 acc: 84.29
+11/10/2020 00:18:09 - INFO - __main__ -   Best top-1 acc: 60.48
+11/10/2020 00:18:09 - INFO - __main__ -   Mean top-1 acc: 57.78
+
+Train Epoch: 29/ 256. Iter: 1024/1024. LR: 0.0593. Loss: 6.2518. Loss_x: 1.9083. Loss_u: 0.0491. Loss_s: 4.2944. Mask: 0.18. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.5713. top1: 60.27. top5: 84.36. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.70it/s]
+11/10/2020 00:28:28 - INFO - __main__ -   top-1 acc: 60.27
+11/10/2020 00:28:28 - INFO - __main__ -   top-5 acc: 84.36
+11/10/2020 00:28:28 - INFO - __main__ -   Best top-1 acc: 60.48
+11/10/2020 00:28:28 - INFO - __main__ -   Mean top-1 acc: 58.24
+
+Train Epoch: 30/ 256. Iter: 1024/1024. LR: 0.0592. Loss: 6.2298. Loss_x: 1.8863. Loss_u: 0.0501. Loss_s: 4.2933. Mask: 0.14. : 100%|█████████████████████| 1024/1024 [09:53<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.5628. top1: 60.56. top5: 84.63. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.75it/s]
+11/10/2020 00:38:50 - INFO - __main__ -   top-1 acc: 60.56
+11/10/2020 00:38:50 - INFO - __main__ -   top-5 acc: 84.63
+11/10/2020 00:38:50 - INFO - __main__ -   Best top-1 acc: 60.56
+11/10/2020 00:38:50 - INFO - __main__ -   Mean top-1 acc: 58.63
+
+Train Epoch: 31/ 256. Iter: 1024/1024. LR: 0.0592. Loss: 6.2085. Loss_x: 1.8651. Loss_u: 0.0511. Loss_s: 4.2923. Mask: 0.19. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5635. top1: 60.53. top5: 84.44. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.48it/s]
+11/10/2020 00:49:11 - INFO - __main__ -   top-1 acc: 60.53
+11/10/2020 00:49:11 - INFO - __main__ -   top-5 acc: 84.44
+11/10/2020 00:49:11 - INFO - __main__ -   Best top-1 acc: 60.56
+11/10/2020 00:49:11 - INFO - __main__ -   Mean top-1 acc: 58.95
+
+Train Epoch: 32/ 256. Iter: 1024/1024. LR: 0.0591. Loss: 6.1881. Loss_x: 1.8446. Loss_u: 0.0522. Loss_s: 4.2913. Mask: 0.24. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.5640. top1: 60.80. top5: 84.50. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.77it/s]
+11/10/2020 00:59:31 - INFO - __main__ -   top-1 acc: 60.80
+11/10/2020 00:59:31 - INFO - __main__ -   top-5 acc: 84.50
+11/10/2020 00:59:31 - INFO - __main__ -   Best top-1 acc: 60.80
+11/10/2020 00:59:31 - INFO - __main__ -   Mean top-1 acc: 59.23
+
+Train Epoch: 33/ 256. Iter: 1024/1024. LR: 0.0591. Loss: 6.1688. Loss_x: 1.8253. Loss_u: 0.0531. Loss_s: 4.2904. Mask: 0.15. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5729. top1: 60.50. top5: 84.39. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.67it/s]
+11/10/2020 01:09:50 - INFO - __main__ -   top-1 acc: 60.50
+11/10/2020 01:09:50 - INFO - __main__ -   top-5 acc: 84.39
+11/10/2020 01:09:50 - INFO - __main__ -   Best top-1 acc: 60.80
+11/10/2020 01:09:50 - INFO - __main__ -   Mean top-1 acc: 59.44
+
+Train Epoch: 34/ 256. Iter: 1024/1024. LR: 0.0590. Loss: 6.1504. Loss_x: 1.8069. Loss_u: 0.0540. Loss_s: 4.2895. Mask: 0.12. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5666. top1: 60.65. top5: 84.51. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.56it/s]
+11/10/2020 01:20:12 - INFO - __main__ -   top-1 acc: 60.65
+11/10/2020 01:20:12 - INFO - __main__ -   top-5 acc: 84.51
+11/10/2020 01:20:12 - INFO - __main__ -   Best top-1 acc: 60.80
+11/10/2020 01:20:12 - INFO - __main__ -   Mean top-1 acc: 59.62
+
+Train Epoch: 35/ 256. Iter: 1024/1024. LR: 0.0589. Loss: 6.1323. Loss_x: 1.7887. Loss_u: 0.0550. Loss_s: 4.2887. Mask: 0.21. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5679. top1: 60.88. top5: 84.46. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.56it/s]
+11/10/2020 01:30:32 - INFO - __main__ -   top-1 acc: 60.88
+11/10/2020 01:30:32 - INFO - __main__ -   top-5 acc: 84.46
+11/10/2020 01:30:32 - INFO - __main__ -   Best top-1 acc: 60.88
+11/10/2020 01:30:32 - INFO - __main__ -   Mean top-1 acc: 59.79
+
+Train Epoch: 36/ 256. Iter: 1024/1024. LR: 0.0589. Loss: 6.1153. Loss_x: 1.7716. Loss_u: 0.0558. Loss_s: 4.2879. Mask: 0.15. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.5687. top1: 60.83. top5: 84.53. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.68it/s]
+11/10/2020 01:40:52 - INFO - __main__ -   top-1 acc: 60.83
+11/10/2020 01:40:52 - INFO - __main__ -   top-5 acc: 84.53
+11/10/2020 01:40:52 - INFO - __main__ -   Best top-1 acc: 60.88
+11/10/2020 01:40:52 - INFO - __main__ -   Mean top-1 acc: 59.95
+
+Train Epoch: 37/ 256. Iter: 1024/1024. LR: 0.0588. Loss: 6.0990. Loss_x: 1.7553. Loss_u: 0.0566. Loss_s: 4.2871. Mask: 0.11. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5659. top1: 60.77. top5: 84.51. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.65it/s]
+11/10/2020 01:51:12 - INFO - __main__ -   top-1 acc: 60.77
+11/10/2020 01:51:12 - INFO - __main__ -   top-5 acc: 84.51
+11/10/2020 01:51:12 - INFO - __main__ -   Best top-1 acc: 60.88
+11/10/2020 01:51:12 - INFO - __main__ -   Mean top-1 acc: 60.08
+
+Train Epoch: 38/ 256. Iter: 1024/1024. LR: 0.0588. Loss: 6.0830. Loss_x: 1.7393. Loss_u: 0.0574. Loss_s: 4.2863. Mask: 0.18. : 100%|█████████████████████| 1024/1024 [09:53<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5658. top1: 60.84. top5: 84.70. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.59it/s]
+11/10/2020 02:01:34 - INFO - __main__ -   top-1 acc: 60.84
+11/10/2020 02:01:34 - INFO - __main__ -   top-5 acc: 84.70
+11/10/2020 02:01:34 - INFO - __main__ -   Best top-1 acc: 60.88
+11/10/2020 02:01:34 - INFO - __main__ -   Mean top-1 acc: 60.19
+
+Train Epoch: 39/ 256. Iter: 1024/1024. LR: 0.0587. Loss: 6.0675. Loss_x: 1.7237. Loss_u: 0.0582. Loss_s: 4.2856. Mask: 0.19. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5728. top1: 60.95. top5: 84.34. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.54it/s]
+11/10/2020 02:11:55 - INFO - __main__ -   top-1 acc: 60.95
+11/10/2020 02:11:55 - INFO - __main__ -   top-5 acc: 84.34
+11/10/2020 02:11:55 - INFO - __main__ -   Best top-1 acc: 60.95
+11/10/2020 02:11:55 - INFO - __main__ -   Mean top-1 acc: 60.31
+
+Train Epoch: 40/ 256. Iter: 1024/1024. LR: 0.0586. Loss: 6.0531. Loss_x: 1.7092. Loss_u: 0.0590. Loss_s: 4.2849. Mask: 0.16. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5695. top1: 61.01. top5: 84.61. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.60it/s]
+11/10/2020 02:22:15 - INFO - __main__ -   top-1 acc: 61.01
+11/10/2020 02:22:15 - INFO - __main__ -   top-5 acc: 84.61
+11/10/2020 02:22:15 - INFO - __main__ -   Best top-1 acc: 61.01
+11/10/2020 02:22:15 - INFO - __main__ -   Mean top-1 acc: 60.41
+
+Train Epoch: 41/ 256. Iter: 1024/1024. LR: 0.0586. Loss: 6.0390. Loss_x: 1.6950. Loss_u: 0.0598. Loss_s: 4.2842. Mask: 0.22. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5647. top1: 61.09. top5: 84.69. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.54it/s]
+11/10/2020 02:32:36 - INFO - __main__ -   top-1 acc: 61.09
+11/10/2020 02:32:36 - INFO - __main__ -   top-5 acc: 84.69
+11/10/2020 02:32:36 - INFO - __main__ -   Best top-1 acc: 61.09
+11/10/2020 02:32:36 - INFO - __main__ -   Mean top-1 acc: 60.50
+
+Train Epoch: 42/ 256. Iter: 1024/1024. LR: 0.0585. Loss: 6.0251. Loss_x: 1.6809. Loss_u: 0.0606. Loss_s: 4.2836. Mask: 0.19. : 100%|█████████████████████| 1024/1024 [09:53<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5716. top1: 60.99. top5: 84.46. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.57it/s]
+11/10/2020 02:42:58 - INFO - __main__ -   top-1 acc: 60.99
+11/10/2020 02:42:58 - INFO - __main__ -   top-5 acc: 84.46
+11/10/2020 02:42:58 - INFO - __main__ -   Best top-1 acc: 61.09
+11/10/2020 02:42:58 - INFO - __main__ -   Mean top-1 acc: 60.57
+
+Train Epoch: 43/ 256. Iter: 1024/1024. LR: 0.0584. Loss: 6.0119. Loss_x: 1.6676. Loss_u: 0.0613. Loss_s: 4.2830. Mask: 0.14. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5700. top1: 61.22. top5: 84.74. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.55it/s]
+11/10/2020 02:53:18 - INFO - __main__ -   top-1 acc: 61.22
+11/10/2020 02:53:18 - INFO - __main__ -   top-5 acc: 84.74
+11/10/2020 02:53:18 - INFO - __main__ -   Best top-1 acc: 61.22
+11/10/2020 02:53:18 - INFO - __main__ -   Mean top-1 acc: 60.65
+
+Train Epoch: 44/ 256. Iter: 1024/1024. LR: 0.0583. Loss: 5.9993. Loss_x: 1.6549. Loss_u: 0.0620. Loss_s: 4.2823. Mask: 0.22. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.5705. top1: 61.21. top5: 84.67. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.70it/s]
+11/10/2020 03:03:38 - INFO - __main__ -   top-1 acc: 61.21
+11/10/2020 03:03:38 - INFO - __main__ -   top-5 acc: 84.67
+11/10/2020 03:03:38 - INFO - __main__ -   Best top-1 acc: 61.22
+11/10/2020 03:03:38 - INFO - __main__ -   Mean top-1 acc: 60.70
+
+Train Epoch: 45/ 256. Iter: 1024/1024. LR: 0.0583. Loss: 5.9868. Loss_x: 1.6424. Loss_u: 0.0627. Loss_s: 4.2817. Mask: 0.21. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5712. top1: 61.16. top5: 84.85. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.64it/s]
+11/10/2020 03:13:58 - INFO - __main__ -   top-1 acc: 61.16
+11/10/2020 03:13:58 - INFO - __main__ -   top-5 acc: 84.85
+11/10/2020 03:13:58 - INFO - __main__ -   Best top-1 acc: 61.22
+11/10/2020 03:13:58 - INFO - __main__ -   Mean top-1 acc: 60.76
+
+Train Epoch: 46/ 256. Iter: 1024/1024. LR: 0.0582. Loss: 5.9748. Loss_x: 1.6302. Loss_u: 0.0634. Loss_s: 4.2812. Mask: 0.18. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5775. top1: 61.09. top5: 84.62. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.51it/s]
+11/10/2020 03:24:19 - INFO - __main__ -   top-1 acc: 61.09
+11/10/2020 03:24:19 - INFO - __main__ -   top-5 acc: 84.62
+11/10/2020 03:24:19 - INFO - __main__ -   Best top-1 acc: 61.22
+11/10/2020 03:24:19 - INFO - __main__ -   Mean top-1 acc: 60.81
+
+Train Epoch: 47/ 256. Iter: 1024/1024. LR: 0.0581. Loss: 5.9631. Loss_x: 1.6184. Loss_u: 0.0640. Loss_s: 4.2806. Mask: 0.21. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.5707. top1: 60.97. top5: 84.73. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.76it/s]
+11/10/2020 03:34:39 - INFO - __main__ -   top-1 acc: 60.97
+11/10/2020 03:34:39 - INFO - __main__ -   top-5 acc: 84.73
+11/10/2020 03:34:39 - INFO - __main__ -   Best top-1 acc: 61.22
+11/10/2020 03:34:39 - INFO - __main__ -   Mean top-1 acc: 60.84
+
+Train Epoch: 48/ 256. Iter: 1024/1024. LR: 0.0580. Loss: 5.9521. Loss_x: 1.6074. Loss_u: 0.0647. Loss_s: 4.2801. Mask: 0.17. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5723. top1: 61.14. top5: 84.87. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.63it/s]
+11/10/2020 03:44:59 - INFO - __main__ -   top-1 acc: 61.14
+11/10/2020 03:44:59 - INFO - __main__ -   top-5 acc: 84.87
+11/10/2020 03:44:59 - INFO - __main__ -   Best top-1 acc: 61.22
+11/10/2020 03:44:59 - INFO - __main__ -   Mean top-1 acc: 60.87
+
+Train Epoch: 49/ 256. Iter: 1024/1024. LR: 0.0579. Loss: 5.9410. Loss_x: 1.5961. Loss_u: 0.0653. Loss_s: 4.2796. Mask: 0.26. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5728. top1: 61.17. top5: 84.84. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.66it/s]
+11/10/2020 03:55:19 - INFO - __main__ -   top-1 acc: 61.17
+11/10/2020 03:55:19 - INFO - __main__ -   top-5 acc: 84.84
+11/10/2020 03:55:19 - INFO - __main__ -   Best top-1 acc: 61.22
+11/10/2020 03:55:19 - INFO - __main__ -   Mean top-1 acc: 60.92
+
+Train Epoch: 50/ 256. Iter: 1024/1024. LR: 0.0579. Loss: 5.9304. Loss_x: 1.5855. Loss_u: 0.0659. Loss_s: 4.2791. Mask: 0.16. : 100%|█████████████████████| 1024/1024 [09:53<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5749. top1: 61.37. top5: 84.80. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.59it/s]
+11/10/2020 04:05:41 - INFO - __main__ -   top-1 acc: 61.37
+11/10/2020 04:05:41 - INFO - __main__ -   top-5 acc: 84.80
+11/10/2020 04:05:41 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 04:05:41 - INFO - __main__ -   Mean top-1 acc: 60.96
+
+Train Epoch: 51/ 256. Iter: 1024/1024. LR: 0.0578. Loss: 5.9203. Loss_x: 1.5753. Loss_u: 0.0665. Loss_s: 4.2785. Mask: 0.21. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5728. top1: 61.22. top5: 84.77. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.55it/s]
+11/10/2020 04:16:01 - INFO - __main__ -   top-1 acc: 61.22
+11/10/2020 04:16:01 - INFO - __main__ -   top-5 acc: 84.77
+11/10/2020 04:16:01 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 04:16:01 - INFO - __main__ -   Mean top-1 acc: 60.99
+
+Train Epoch: 52/ 256. Iter: 1024/1024. LR: 0.0577. Loss: 5.9101. Loss_x: 1.5650. Loss_u: 0.0670. Loss_s: 4.2780. Mask: 0.24. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5771. top1: 61.03. top5: 84.69. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.66it/s]
+11/10/2020 04:26:22 - INFO - __main__ -   top-1 acc: 61.03
+11/10/2020 04:26:22 - INFO - __main__ -   top-5 acc: 84.69
+11/10/2020 04:26:22 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 04:26:22 - INFO - __main__ -   Mean top-1 acc: 61.00
+
+Train Epoch: 53/ 256. Iter: 1024/1024. LR: 0.0576. Loss: 5.9001. Loss_x: 1.5551. Loss_u: 0.0675. Loss_s: 4.2775. Mask: 0.15. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5807. top1: 61.05. top5: 84.73. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.45it/s]
+11/10/2020 04:36:42 - INFO - __main__ -   top-1 acc: 61.05
+11/10/2020 04:36:42 - INFO - __main__ -   top-5 acc: 84.73
+11/10/2020 04:36:43 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 04:36:43 - INFO - __main__ -   Mean top-1 acc: 61.03
+
+Train Epoch: 54/ 256. Iter: 1024/1024. LR: 0.0575. Loss: 5.8909. Loss_x: 1.5458. Loss_u: 0.0681. Loss_s: 4.2771. Mask: 0.18. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5846. top1: 61.26. top5: 84.75. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.50it/s]
+11/10/2020 04:47:03 - INFO - __main__ -   top-1 acc: 61.26
+11/10/2020 04:47:03 - INFO - __main__ -   top-5 acc: 84.75
+11/10/2020 04:47:03 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 04:47:03 - INFO - __main__ -   Mean top-1 acc: 61.06
+
+Train Epoch: 55/ 256. Iter: 1024/1024. LR: 0.0574. Loss: 5.8814. Loss_x: 1.5362. Loss_u: 0.0686. Loss_s: 4.2766. Mask: 0.19. : 100%|█████████████████████| 1024/1024 [09:53<00:00,  1.72it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5802. top1: 61.23. top5: 84.63. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.58it/s]
+11/10/2020 04:57:25 - INFO - __main__ -   top-1 acc: 61.23
+11/10/2020 04:57:25 - INFO - __main__ -   top-5 acc: 84.63
+11/10/2020 04:57:25 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 04:57:25 - INFO - __main__ -   Mean top-1 acc: 61.08
+
+Train Epoch: 56/ 256. Iter: 1024/1024. LR: 0.0573. Loss: 5.8722. Loss_x: 1.5270. Loss_u: 0.0691. Loss_s: 4.2761. Mask: 0.22. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5854. top1: 61.26. top5: 84.49. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.56it/s]
+11/10/2020 05:07:46 - INFO - __main__ -   top-1 acc: 61.26
+11/10/2020 05:07:46 - INFO - __main__ -   top-5 acc: 84.49
+11/10/2020 05:07:46 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 05:07:46 - INFO - __main__ -   Mean top-1 acc: 61.10
+
+Train Epoch: 57/ 256. Iter: 1024/1024. LR: 0.0572. Loss: 5.8635. Loss_x: 1.5181. Loss_u: 0.0697. Loss_s: 4.2757. Mask: 0.24. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.5852. top1: 61.17. top5: 84.72. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.72it/s]
+11/10/2020 05:18:05 - INFO - __main__ -   top-1 acc: 61.17
+11/10/2020 05:18:05 - INFO - __main__ -   top-5 acc: 84.72
+11/10/2020 05:18:05 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 05:18:05 - INFO - __main__ -   Mean top-1 acc: 61.12
+
+Train Epoch: 58/ 256. Iter: 1024/1024. LR: 0.0571. Loss: 5.8551. Loss_x: 1.5097. Loss_u: 0.0702. Loss_s: 4.2753. Mask: 0.18. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5776. top1: 61.34. top5: 84.91. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.61it/s]
+11/10/2020 05:28:25 - INFO - __main__ -   top-1 acc: 61.34
+11/10/2020 05:28:25 - INFO - __main__ -   top-5 acc: 84.91
+11/10/2020 05:28:25 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 05:28:25 - INFO - __main__ -   Mean top-1 acc: 61.15
+
+Train Epoch: 59/ 256. Iter: 1024/1024. LR: 0.0570. Loss: 5.8463. Loss_x: 1.5009. Loss_u: 0.0706. Loss_s: 4.2748. Mask: 0.24. : 100%|█████████████████████| 1024/1024 [09:53<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5835. top1: 61.26. top5: 84.91. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.48it/s]
+11/10/2020 05:38:47 - INFO - __main__ -   top-1 acc: 61.26
+11/10/2020 05:38:47 - INFO - __main__ -   top-5 acc: 84.91
+11/10/2020 05:38:47 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 05:38:47 - INFO - __main__ -   Mean top-1 acc: 61.16
+
+Train Epoch: 60/ 256. Iter: 1024/1024. LR: 0.0569. Loss: 5.8381. Loss_x: 1.4926. Loss_u: 0.0711. Loss_s: 4.2744. Mask: 0.22. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.5857. top1: 60.92. top5: 84.71. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.73it/s]
+11/10/2020 05:49:06 - INFO - __main__ -   top-1 acc: 60.92
+11/10/2020 05:49:06 - INFO - __main__ -   top-5 acc: 84.71
+11/10/2020 05:49:07 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 05:49:07 - INFO - __main__ -   Mean top-1 acc: 61.16
+
+Train Epoch: 61/ 256. Iter: 1024/1024. LR: 0.0568. Loss: 5.8303. Loss_x: 1.4848. Loss_u: 0.0715. Loss_s: 4.2740. Mask: 0.18. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5952. top1: 61.17. top5: 84.75. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.66it/s]
+11/10/2020 05:59:26 - INFO - __main__ -   top-1 acc: 61.17
+11/10/2020 05:59:26 - INFO - __main__ -   top-5 acc: 84.75
+11/10/2020 05:59:26 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 05:59:26 - INFO - __main__ -   Mean top-1 acc: 61.16
+
+Train Epoch: 62/ 256. Iter: 1024/1024. LR: 0.0567. Loss: 5.8223. Loss_x: 1.4767. Loss_u: 0.0720. Loss_s: 4.2736. Mask: 0.19. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5972. top1: 61.07. top5: 84.50. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.58it/s]
+11/10/2020 06:09:47 - INFO - __main__ -   top-1 acc: 61.07
+11/10/2020 06:09:47 - INFO - __main__ -   top-5 acc: 84.50
+11/10/2020 06:09:47 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 06:09:47 - INFO - __main__ -   Mean top-1 acc: 61.16
+
+Train Epoch: 63/ 256. Iter: 1024/1024. LR: 0.0566. Loss: 5.8144. Loss_x: 1.4687. Loss_u: 0.0725. Loss_s: 4.2732. Mask: 0.23. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.5931. top1: 61.16. top5: 84.70. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.56it/s]
+11/10/2020 06:20:08 - INFO - __main__ -   top-1 acc: 61.16
+11/10/2020 06:20:08 - INFO - __main__ -   top-5 acc: 84.70
+11/10/2020 06:20:08 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 06:20:08 - INFO - __main__ -   Mean top-1 acc: 61.16
+
+Train Epoch: 64/ 256. Iter: 1024/1024. LR: 0.0565. Loss: 5.8070. Loss_x: 1.4612. Loss_u: 0.0730. Loss_s: 4.2728. Mask: 0.20. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.5985. top1: 61.20. top5: 84.69. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.68it/s]
+11/10/2020 06:30:27 - INFO - __main__ -   top-1 acc: 61.20
+11/10/2020 06:30:27 - INFO - __main__ -   top-5 acc: 84.69
+11/10/2020 06:30:28 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 06:30:28 - INFO - __main__ -   Mean top-1 acc: 61.16
+
+Train Epoch: 65/ 256. Iter: 1024/1024. LR: 0.0564. Loss: 5.7997. Loss_x: 1.4539. Loss_u: 0.0734. Loss_s: 4.2724. Mask: 0.21. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.5981. top1: 60.97. top5: 84.76. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.58it/s]
+11/10/2020 06:40:48 - INFO - __main__ -   top-1 acc: 60.97
+11/10/2020 06:40:48 - INFO - __main__ -   top-5 acc: 84.76
+11/10/2020 06:40:48 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 06:40:48 - INFO - __main__ -   Mean top-1 acc: 61.15
+
+Train Epoch: 66/ 256. Iter: 1024/1024. LR: 0.0563. Loss: 5.7923. Loss_x: 1.4464. Loss_u: 0.0738. Loss_s: 4.2720. Mask: 0.26. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.037s. Batch: 0.057s. Loss: 1.6064. top1: 60.98. top5: 84.51. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:30<00:00, 17.49it/s]
+11/10/2020 06:51:10 - INFO - __main__ -   top-1 acc: 60.98
+11/10/2020 06:51:10 - INFO - __main__ -   top-5 acc: 84.51
+11/10/2020 06:51:10 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 06:51:10 - INFO - __main__ -   Mean top-1 acc: 61.15
+
+Train Epoch: 67/ 256. Iter: 1024/1024. LR: 0.0562. Loss: 5.7852. Loss_x: 1.4392. Loss_u: 0.0743. Loss_s: 4.2717. Mask: 0.26. : 100%|█████████████████████| 1024/1024 [09:53<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.6078. top1: 61.24. top5: 84.70. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.67it/s]
+11/10/2020 07:01:31 - INFO - __main__ -   top-1 acc: 61.24
+11/10/2020 07:01:31 - INFO - __main__ -   top-5 acc: 84.70
+11/10/2020 07:01:31 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 07:01:31 - INFO - __main__ -   Mean top-1 acc: 61.16
+
+Train Epoch: 68/ 256. Iter: 1024/1024. LR: 0.0560. Loss: 5.7784. Loss_x: 1.4324. Loss_u: 0.0747. Loss_s: 4.2713. Mask: 0.22. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.6155. top1: 61.01. top5: 84.63. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.61it/s]
+11/10/2020 07:11:52 - INFO - __main__ -   top-1 acc: 61.01
+11/10/2020 07:11:52 - INFO - __main__ -   top-5 acc: 84.63
+11/10/2020 07:11:52 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 07:11:52 - INFO - __main__ -   Mean top-1 acc: 61.15
+
+Train Epoch: 69/ 256. Iter: 1024/1024. LR: 0.0559. Loss: 5.7714. Loss_x: 1.4254. Loss_u: 0.0751. Loss_s: 4.2710. Mask: 0.21. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.6087. top1: 61.31. top5: 84.70. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.56it/s]
+11/10/2020 07:22:13 - INFO - __main__ -   top-1 acc: 61.31
+11/10/2020 07:22:13 - INFO - __main__ -   top-5 acc: 84.70
+11/10/2020 07:22:13 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 07:22:13 - INFO - __main__ -   Mean top-1 acc: 61.16
+
+Train Epoch: 70/ 256. Iter: 1024/1024. LR: 0.0558. Loss: 5.7646. Loss_x: 1.4185. Loss_u: 0.0755. Loss_s: 4.2706. Mask: 0.21. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.6056. top1: 61.23. top5: 84.63. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.55it/s]
+11/10/2020 07:32:33 - INFO - __main__ -   top-1 acc: 61.23
+11/10/2020 07:32:33 - INFO - __main__ -   top-5 acc: 84.63
+11/10/2020 07:32:33 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 07:32:33 - INFO - __main__ -   Mean top-1 acc: 61.15
+
+Train Epoch: 71/ 256. Iter: 1024/1024. LR: 0.0557. Loss: 5.7580. Loss_x: 1.4119. Loss_u: 0.0759. Loss_s: 4.2702. Mask: 0.24. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.6037. top1: 61.18. top5: 84.79. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.60it/s]
+11/10/2020 07:42:54 - INFO - __main__ -   top-1 acc: 61.18
+11/10/2020 07:42:54 - INFO - __main__ -   top-5 acc: 84.79
+11/10/2020 07:42:54 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 07:42:54 - INFO - __main__ -   Mean top-1 acc: 61.15
+
+Train Epoch: 72/ 256. Iter: 1024/1024. LR: 0.0556. Loss: 5.7515. Loss_x: 1.4054. Loss_u: 0.0763. Loss_s: 4.2699. Mask: 0.23. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.6078. top1: 61.21. top5: 84.77. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.56it/s]
+11/10/2020 07:53:14 - INFO - __main__ -   top-1 acc: 61.21
+11/10/2020 07:53:14 - INFO - __main__ -   top-5 acc: 84.77
+11/10/2020 07:53:14 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 07:53:14 - INFO - __main__ -   Mean top-1 acc: 61.16
+
+Train Epoch: 73/ 256. Iter: 1024/1024. LR: 0.0555. Loss: 5.7450. Loss_x: 1.3988. Loss_u: 0.0767. Loss_s: 4.2695. Mask: 0.27. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.6117. top1: 61.35. top5: 84.68. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.72it/s]
+11/10/2020 08:03:34 - INFO - __main__ -   top-1 acc: 61.35
+11/10/2020 08:03:34 - INFO - __main__ -   top-5 acc: 84.68
+11/10/2020 08:03:34 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 08:03:34 - INFO - __main__ -   Mean top-1 acc: 61.18
+
+Train Epoch: 74/ 256. Iter: 1024/1024. LR: 0.0553. Loss: 5.7386. Loss_x: 1.3924. Loss_u: 0.0771. Loss_s: 4.2692. Mask: 0.19. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.6103. top1: 61.17. top5: 84.83. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.48it/s]
+11/10/2020 08:13:54 - INFO - __main__ -   top-1 acc: 61.17
+11/10/2020 08:13:54 - INFO - __main__ -   top-5 acc: 84.83
+11/10/2020 08:13:54 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 08:13:54 - INFO - __main__ -   Mean top-1 acc: 61.17
+
+Train Epoch: 75/ 256. Iter: 1024/1024. LR: 0.0552. Loss: 5.7326. Loss_x: 1.3863. Loss_u: 0.0775. Loss_s: 4.2688. Mask: 0.24. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.6196. top1: 60.88. top5: 84.59. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.44it/s]
+11/10/2020 08:24:15 - INFO - __main__ -   top-1 acc: 60.88
+11/10/2020 08:24:15 - INFO - __main__ -   top-5 acc: 84.59
+11/10/2020 08:24:15 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 08:24:15 - INFO - __main__ -   Mean top-1 acc: 61.15
+
+Train Epoch: 76/ 256. Iter: 1024/1024. LR: 0.0551. Loss: 5.7264. Loss_x: 1.3801. Loss_u: 0.0778. Loss_s: 4.2685. Mask: 0.24. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.6087. top1: 61.20. top5: 84.80. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.57it/s]
+11/10/2020 08:34:36 - INFO - __main__ -   top-1 acc: 61.20
+11/10/2020 08:34:36 - INFO - __main__ -   top-5 acc: 84.80
+11/10/2020 08:34:36 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 08:34:36 - INFO - __main__ -   Mean top-1 acc: 61.15
+
+Train Epoch: 77/ 256. Iter: 1024/1024. LR: 0.0549. Loss: 5.7204. Loss_x: 1.3740. Loss_u: 0.0782. Loss_s: 4.2682. Mask: 0.21. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.6214. top1: 61.18. top5: 84.65. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.59it/s]
+11/10/2020 08:44:55 - INFO - __main__ -   top-1 acc: 61.18
+11/10/2020 08:44:55 - INFO - __main__ -   top-5 acc: 84.65
+11/10/2020 08:44:55 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 08:44:55 - INFO - __main__ -   Mean top-1 acc: 61.15
+
+Train Epoch: 78/ 256. Iter: 1024/1024. LR: 0.0548. Loss: 5.7147. Loss_x: 1.3682. Loss_u: 0.0786. Loss_s: 4.2679. Mask: 0.21. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.054s. Loss: 1.6259. top1: 61.23. top5: 84.65. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.53it/s]
+11/10/2020 08:55:15 - INFO - __main__ -   top-1 acc: 61.23
+11/10/2020 08:55:15 - INFO - __main__ -   top-5 acc: 84.65
+11/10/2020 08:55:15 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 08:55:15 - INFO - __main__ -   Mean top-1 acc: 61.15
+
+Train Epoch: 79/ 256. Iter: 1024/1024. LR: 0.0547. Loss: 5.7090. Loss_x: 1.3626. Loss_u: 0.0789. Loss_s: 4.2675. Mask: 0.22. : 100%|█████████████████████| 1024/1024 [09:51<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.6251. top1: 61.26. top5: 84.55. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.65it/s]
+11/10/2020 09:05:35 - INFO - __main__ -   top-1 acc: 61.26
+11/10/2020 09:05:35 - INFO - __main__ -   top-5 acc: 84.55
+11/10/2020 09:05:35 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 09:05:35 - INFO - __main__ -   Mean top-1 acc: 61.15
+
+Train Epoch: 80/ 256. Iter: 1024/1024. LR: 0.0546. Loss: 5.7033. Loss_x: 1.3568. Loss_u: 0.0793. Loss_s: 4.2672. Mask: 0.23. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.054s. Loss: 1.6195. top1: 61.33. top5: 84.58. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.64it/s]
+11/10/2020 09:15:56 - INFO - __main__ -   top-1 acc: 61.33
+11/10/2020 09:15:56 - INFO - __main__ -   top-5 acc: 84.58
+11/10/2020 09:15:56 - INFO - __main__ -   Best top-1 acc: 61.37
+11/10/2020 09:15:56 - INFO - __main__ -   Mean top-1 acc: 61.17
+
+Train Epoch: 81/ 256. Iter: 1024/1024. LR: 0.0544. Loss: 5.6977. Loss_x: 1.3511. Loss_u: 0.0797. Loss_s: 4.2669. Mask: 0.28. : 100%|█████████████████████| 1024/1024 [09:50<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.033s. Batch: 0.053s. Loss: 1.6245. top1: 61.40. top5: 84.65. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:28<00:00, 18.76it/s]
+11/10/2020 09:26:15 - INFO - __main__ -   top-1 acc: 61.40
+11/10/2020 09:26:15 - INFO - __main__ -   top-5 acc: 84.65
+11/10/2020 09:26:15 - INFO - __main__ -   Best top-1 acc: 61.40
+11/10/2020 09:26:15 - INFO - __main__ -   Mean top-1 acc: 61.18
+
+Train Epoch: 82/ 256. Iter: 1024/1024. LR: 0.0543. Loss: 5.6924. Loss_x: 1.3458. Loss_u: 0.0800. Loss_s: 4.2666. Mask: 0.23. : 100%|█████████████████████| 1024/1024 [09:52<00:00,  1.73it/s]
+Test Iter:  527/ 527. Data: 0.034s. Batch: 0.055s. Loss: 1.6176. top1: 61.39. top5: 84.66. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:29<00:00, 18.14it/s]
+11/10/2020 09:36:36 - INFO - __main__ -   top-1 acc: 61.39
+11/10/2020 09:36:36 - INFO - __main__ -   top-5 acc: 84.66
+11/10/2020 09:36:36 - INFO - __main__ -   Best top-1 acc: 61.40
+11/10/2020 09:36:36 - INFO - __main__ -   Mean top-1 acc: 61.19
+
+Train Epoch: 83/ 256. Iter: 1024/1024. LR: 0.0541. Loss: 5.6866. Loss_x: 1.3400. Loss_u: 0.0803. Loss_s: 4.2663. Mask: 0.23. : 100%|█████████████████████| 1024/1024 [10:20<00:00,  1.65it/s]
+Test Iter:  527/ 527. Data: 0.053s. Batch: 0.076s. Loss: 1.6324. top1: 61.15. top5: 84.56. : 100%|█████████████████████████████████████████████████████████| 527/527 [00:39<00:00, 13.19it/s]
+11/10/2020 09:47:36 - INFO - __main__ -   top-1 acc: 61.15
+11/10/2020 09:47:36 - INFO - __main__ -   top-5 acc: 84.56
+11/10/2020 09:47:36 - INFO - __main__ -   Best top-1 acc: 61.40
+11/10/2020 09:47:36 - INFO - __main__ -   Mean top-1 acc: 61.19

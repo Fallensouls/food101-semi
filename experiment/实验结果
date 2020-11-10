@@ -1,0 +1,3 @@
+Wide Resnet-28-2  food101 20%标注  top1: 60.13%  top5: 84.34%  
+Wide Resnet-28-2  food101 20%标注  top1: 61.40%  top5: 84.65%  + simclr 收敛得更快 更少的轮数
+
