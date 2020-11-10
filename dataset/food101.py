@@ -67,7 +67,7 @@ class TestDataset(Dataset):
         return self.len
 
 
-def get_food101Data(path,LabeledPercent,labeled_tranform,unlabeled_transform):
+def get_food101_data(path,LabeledPercent,labeled_tranform,unlabeled_transform):
     i=0
     class_label={}
     with open(os.path.join(path,'classes.txt'), 'r') as f:

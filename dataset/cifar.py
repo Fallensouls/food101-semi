@@ -6,8 +6,9 @@ from torchvision import datasets
 from torchvision import transforms
 from torchvision.transforms.transforms import Resize
 from .randaugment import RandAugmentMC
-from .food101 import get_food101Data, get_unlabel_food101
+from .food101 import get_food101_data
 from .transforms import get_simclr_data_transforms
+from .uecfood import get_uecfood_data
 
 logger = logging.getLogger(__name__)
 
@@ -17,6 +18,11 @@ cifar100_mean = (0.5071, 0.4867, 0.4408)
 cifar100_std = (0.2675, 0.2565, 0.2761)
 food101_mean = (0.54614421,0.44465557,0.34460956)
 food101_std =  (0.26745502,0.27089352,0.27548077)
+uecfood100_mean = (0.59842609, 0.49229521, 0.36115813)
+uecfood100_std = (0.23920553, 0.24704192, 0.26638424)
+uecfood256_mean = (0.60702168, 0.49392965, 0.35589468)
+uecfood256_std = (0.23429272, 0.24887561, 0.26953048)
+
 normal_mean = (0.5, 0.5, 0.5)
 normal_std = (0.5, 0.5, 0.5)
 
@@ -103,12 +109,11 @@ def get_food101(root, labeledPercentage):
                               padding_mode='reflect'),
         transforms.ToTensor(),
         transforms.Normalize(mean=food101_mean, std=food101_std)])
-    LabeledSet,UnlabeledSet,TestSet = get_food101Data(root,labeledPercentage,transform_labeled,TransformFix(mean=food101_mean, std=food101_std))
+    LabeledSet,UnlabeledSet,TestSet = get_food101_data(root,labeledPercentage,transform_labeled,TransformFix(mean=food101_mean, std=food101_std))
     logger.info("Dataset: food101")
     return LabeledSet, UnlabeledSet, TestSet
 
-
-def get_food101_unlabel(root):
+def get_uecfood100(root, labeledPercentage):
     transform_labeled = transforms.Compose([
         transforms.Resize((64,64)),
         transforms.RandomHorizontalFlip(),
@@ -116,11 +121,23 @@ def get_food101_unlabel(root):
                               padding=int(64*0.125),
                               padding_mode='reflect'),
         transforms.ToTensor(),
-        transforms.Normalize(mean=food101_mean, std=food101_std)])
-    UnlabeledSet,TestSet = get_unlabel_food101(root, transform_labeled, TransformFix(mean=food101_mean, std=food101_std))
-    logger.info("Dataset: food101")
-    return UnlabeledSet, TestSet
+        transforms.Normalize(mean=uecfood100_mean, std=uecfood100_std)])
+    LabeledSet,UnlabeledSet,TestSet = get_uecfood_data(root,labeledPercentage,transform_labeled,TransformFix(mean=uecfood100_mean, std=uecfood100_std))
+    logger.info("Dataset: UECFOOD100")
+    return LabeledSet, UnlabeledSet, TestSet
 
+def get_uecfood256(root, labeledPercentage):
+    transform_labeled = transforms.Compose([
+        transforms.Resize((64,64)),
+        transforms.RandomHorizontalFlip(),
+        transforms.RandomCrop(size=64,
+                              padding=int(64*0.125),
+                              padding_mode='reflect'),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=uecfood256_mean, std=uecfood256_std)])
+    LabeledSet,UnlabeledSet,TestSet = get_uecfood_data(root,labeledPercentage,transform_labeled,TransformFix(mean=uecfood256_mean, std=uecfood256_std))
+    logger.info("Dataset: UECFOOD256")
+    return LabeledSet, UnlabeledSet, TestSet
 
 def x_u_split(labels,
               num_labeled,
@@ -155,7 +172,7 @@ class TransformFix(object):
         self.normalize = transforms.Compose([
             transforms.ToTensor(),
             transforms.Normalize(mean=mean, std=std)])
-        self.byol = get_simclr_data_transforms([64,64], food101_mean, food101_std)
+        # self.byol = get_simclr_data_transforms([64,64], mean, std)
 
     def __call__(self, x):
         weak = self.weak(x)
@@ -216,4 +233,5 @@ class CIFAR100SSL(datasets.CIFAR100):
 DATASET_GETTERS = {'cifar10': get_cifar10,
                    'cifar100': get_cifar100,
                    'food101': get_food101,
-                   'food101unlabel': get_food101_unlabel}
+                   'uecfood100': get_uecfood100,
+                   'uecfood256': get_uecfood256,}
