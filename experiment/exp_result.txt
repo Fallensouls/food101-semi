@@ -1,8 +1,26 @@
 Wide Resnet-28-2  food101 20%标注  top1: 60.13%  top5: 84.34%  
-Wide Resnet-28-2  food101 20%标注  top1: 61.40%  top5: 84.65%  + simclr 收敛得更快 更少的轮数
+Wide Resnet-28-2  food101 20%标注  top1: 61.40%  top5: 84.65%  + simclr 
 
-Wide Resnet-28-2  uecfood100 20%标注  top1: 58.71%  top5: 82.72%  
-Wide Resnet-28-2  uecfood100 20%标注  top1: 58.71%  top5: 82.72%  + simclr
+Wide Resnet-28-2  food101 50%标注  top1: 68.72%  top5: 89.89%  
+Wide Resnet-28-2  food101 50%标注  top1: 69.29%  top5: 89.97%  + simclr 
 
-Wide Resnet-28-2  uecfood256 20%标注  top1: 58.71%  top5: 82.72%  
-Wide Resnet-28-2  uecfood256 20%标注  top1: 58.71%  top5: 82.72%  + simclr
+Wide Resnet-28-2  food101 100%标注  top1: 69.20%  top5: 90.34%  
+
+
+Wide Resnet-28-2  uecfood100 20%标注  top1: 65.37%  top5: 87.62%  100epoch
+Wide Resnet-28-2  uecfood100 20%标注  top1: 66.29%  top5: 87.80%  + simclr  100epoch
+
+Wide Resnet-28-2  uecfood100 50%标注  top1: 74.54%  top5: 92.98%  100epoch
+Wide Resnet-28-2  uecfood100 50%标注  top1: 75.53%  top5: 93.37%  + simclr  100epoch
+
+Wide Resnet-28-2  uecfood100 100%标注  top1: 77.47%  top5: 94.22%  
+
+
+
+Wide Resnet-28-2  uecfood256 20%标注  top1: 49.30%  top5: 74.03%  
+Wide Resnet-28-2  uecfood256 20%标注  top1: 50.47%  top5: 75.05%  + simclr
+
+Wide Resnet-28-2  uecfood256 50%标注  top1: 62.65%  top5: 85.17%  
+Wide Resnet-28-2  uecfood256 50%标注  top1: 63.10%  top5: 85.89%  + simclr
+
+Wide Resnet-28-2  uecfood256 100%标注  top1: 69.86%  top5: 90.09%  

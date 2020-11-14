@@ -7,7 +7,7 @@ from torchvision import transforms
 from torchvision.transforms.transforms import Resize
 from .randaugment import RandAugmentMC
 from .food101 import get_food101_data
-from .transforms import get_simclr_data_transforms
+from .n_food101 import get_food101_n_data
 from .uecfood import get_uecfood_data
 
 logger = logging.getLogger(__name__)
@@ -112,6 +112,19 @@ def get_food101(root, labeledPercentage):
     LabeledSet,UnlabeledSet,TestSet = get_food101_data(root,labeledPercentage,transform_labeled,TransformFix(mean=food101_mean, std=food101_std))
     logger.info("Dataset: food101")
     return LabeledSet, UnlabeledSet, TestSet
+
+def get_food101_il(root, n_task=5):
+    transform_labeled = transforms.Compose([
+        transforms.Resize((64,64)),
+        transforms.RandomHorizontalFlip(),
+        transforms.RandomCrop(size=64,
+                              padding=int(64*0.125),
+                              padding_mode='reflect'),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=food101_mean, std=food101_std)])
+    train_sets, test_set = get_food101_n_data(root, transform_labeled, n_task)
+    logger.info("Dataset: food101-il")
+    return train_sets, test_set
 
 def get_uecfood100(root, labeledPercentage):
     transform_labeled = transforms.Compose([
@@ -234,4 +247,5 @@ DATASET_GETTERS = {'cifar10': get_cifar10,
                    'cifar100': get_cifar100,
                    'food101': get_food101,
                    'uecfood100': get_uecfood100,
-                   'uecfood256': get_uecfood256,}
+                   'uecfood256': get_uecfood256,
+                   'food101-il': get_food101_il}

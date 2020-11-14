@@ -20,7 +20,6 @@ from tqdm import tqdm
 from dataset.cifar import DATASET_GETTERS
 from utils import AverageMeter, accuracy
 
-from ranger import Ranger  # this is from ranger.py
 
 logger = logging.getLogger(__name__)
 best_acc = 0
@@ -76,8 +75,10 @@ def main():
     parser.add_argument('--num-workers', type=int, default=4,
                         help='number of workers')
     parser.add_argument('--dataset', default='cifar10', type=str,
-                        choices=['cifar10', 'cifar100','food101', 'uecfood100', 'uecfood256'],
+                        choices=['cifar10', 'cifar100','food101','food101-il', 'uecfood100', 'uecfood256'],
                         help='dataset name')
+    parser.add_argument('--n_task', type=int, default=5,
+                        help='number of sub-datasets')
     parser.add_argument('--num-labeled', type=int, default=4000,
                         help='number of labeled data')
     parser.add_argument('--per-labeled', type=float, default=0.2,
@@ -85,7 +86,7 @@ def main():
     parser.add_argument('--arch', default='wideresnet', type=str,
                         choices=['wideresnet', 'resnext'],
                         help='dataset name')
-    parser.add_argument('--total-steps', default=2**18, type=int,
+    parser.add_argument('--total-steps', default=2**15, type=int,
                         help='number of total steps to run')
     parser.add_argument('--eval-steps', default=1024, type=int,
                         help='number of eval steps to run')
@@ -187,32 +188,32 @@ def main():
 
 
     train_sampler = RandomSampler if args.local_rank == -1 else DistributedSampler
-    if args.dataset == 'food101' or args.dataset == 'uecfood100' or args.dataset == 'uecfood256':
+    if args.dataset == 'food101-il':
         if args.dataset == 'uecfood100':
             dataset_name = 'UECFOOD100'
         elif args.dataset == 'uecfood256':
             dataset_name = 'UECFOOD256'
-        elif args.dataset == 'food101':
+        elif args.dataset == 'food101-il':
             dataset_name = 'food-101'
         else:
             raise Exception('invalid dataset')
-        labeled_dataset, unlabeled_dataset, test_dataset = DATASET_GETTERS[args.dataset](
-            './data/'+ dataset_name, args.per_labeled)
-        labeled_trainloader = DataLoader(
+        labeled_datasets, test_dataset = DATASET_GETTERS[args.dataset](
+            './data/'+ dataset_name, args.n_task)
+        labeled_trainloaders = [DataLoader(
             labeled_dataset,
             shuffle = True,
             batch_size=args.batch_size,
             num_workers=args.num_workers,
             pin_memory = True,
-            drop_last=True)
+            drop_last=True) for labeled_dataset in labeled_datasets]
         
-        unlabeled_trainloader = DataLoader(
-            unlabeled_dataset,
-            shuffle=True,
-            batch_size=args.batch_size*args.mu,
-            num_workers=args.num_workers,
-            pin_memory = True,
-            drop_last=True)
+#         unlabeled_trainloader = DataLoader(
+#             unlabeled_dataset,
+#             shuffle=True,
+#             batch_size=args.batch_size*args.mu,
+#             num_workers=args.num_workers,
+#             pin_memory = True,
+#             drop_last=True)
 
         test_loader = DataLoader(
             test_dataset,
@@ -264,7 +265,7 @@ def main():
             args.model_depth = 29
             args.model_width = 64
     
-    elif args.dataset == 'food101':
+    elif args.dataset == 'food101-il':
         args.num_classes = 101
         if args.arch == 'wideresnet':
             args.model_depth = 28
@@ -288,7 +289,7 @@ def main():
         args.num_classes = 256
         if args.arch == 'wideresnet':
             args.model_depth = 28
-            args.model_width = 2
+            args.model_width = 4
         elif args.arch == 'resnext':
             args.model_cardinality = 8
             args.model_depth = 29
@@ -358,11 +359,11 @@ def main():
     logger.info(f"  Total optimization steps = {args.total_steps}")
 
     model.zero_grad()
-    train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
+    train(args, labeled_trainloaders, test_loader,
           model, optimizer, ema_model, scheduler, writer)
 
 
-def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
+def train(args, labeled_trainloaders, test_loader,
           model, optimizer, ema_model, scheduler, writer):
     if args.amp:
         from apex import amp
@@ -371,128 +372,96 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
     batch_time = AverageMeter()
     data_time = AverageMeter()
     losses = AverageMeter()
-    losses_x = AverageMeter()
-    losses_u = AverageMeter()
     end = time.time()
 
-    labeled_iter = iter(labeled_trainloader)
-    unlabeled_iter = iter(unlabeled_trainloader)
+    for labeled_trainloader in labeled_trainloaders:
+        labeled_iter = iter(labeled_trainloader)
 
-    print(model)
-    model.train()
-    for epoch in range(args.start_epoch, args.epochs):
-        if not args.no_progress:
-            p_bar = tqdm(range(args.eval_steps),
-                         disable=args.local_rank not in [-1, 0])
-        for batch_idx in range(args.eval_steps):
-            try:
-                inputs_x, targets_x = labeled_iter.next()
-            except:
-                labeled_iter = iter(labeled_trainloader)
-                inputs_x, targets_x = labeled_iter.next()
-
-
-            try:
-                (inputs_u_w, inputs_u_s), _ = unlabeled_iter.next()
-            except:
-                unlabeled_iter = iter(unlabeled_trainloader)
-                (inputs_u_w, inputs_u_s), _ = unlabeled_iter.next()
-
-            data_time.update(time.time() - end)
-            batch_size = inputs_x.shape[0]
-
-            inputs = interleave(
-                torch.cat((inputs_x, inputs_u_w, inputs_u_s)), 2*args.mu+1).to(args.device, non_blocking=True)
-            targets_x = targets_x.to(args.device, non_blocking=True)
-            logits, _ = model(inputs)
-            logits = de_interleave(logits, 2*args.mu+1)
-            logits_x = logits[:batch_size]
-            logits_u_w, logits_u_s = logits[batch_size:].chunk(2)
-            del logits
-
-            Lx = F.cross_entropy(logits_x, targets_x, reduction='mean')
-
-            pseudo_label = torch.softmax(logits_u_w.detach_()/args.T, dim=-1)
-            max_probs, targets_u = torch.max(pseudo_label, dim=-1)
-            mask = max_probs.ge(args.threshold).float()
-
-            Lu = (F.cross_entropy(logits_u_s, targets_u,
-                                  reduction='none') * mask).mean()
-
-            loss = Lx + args.lambda_u * Lu
-
-            if args.amp:
-                with amp.scale_loss(loss, optimizer) as scaled_loss:
-                    scaled_loss.backward()
-            else:
-                loss.backward()
-
-            losses.update(loss.item())
-            losses_x.update(Lx.item())
-            losses_u.update(Lu.item())
-            optimizer.step()
-            scheduler.step()
-            if args.use_ema:
-                ema_model.update(model)
-            model.zero_grad()
-
-            batch_time.update(time.time() - end)
-            end = time.time()
-            mask_prob = mask.mean().item()
+        model.train()
+        for epoch in range(args.start_epoch, args.epochs):
             if not args.no_progress:
-                p_bar.set_description("Train Epoch: {epoch}/{epochs:4}. Iter: {batch:4}/{iter:4}. LR: {lr:.4f}. Loss: {loss:.4f}. Loss_x: {loss_x:.4f}. Loss_u: {loss_u:.4f}. Mask: {mask:.2f}. ".format(
-                    epoch=epoch + 1,
-                    epochs=args.epochs,
-                    batch=batch_idx + 1,
-                    iter=args.eval_steps,
-                    lr=scheduler.get_last_lr()[0],
-                    data=data_time.avg,
-                    bt=batch_time.avg,
-                    loss=losses.avg,
-                    loss_x=losses_x.avg,
-                    loss_u=losses_u.avg,
-                    mask=mask_prob))
-                p_bar.update()
+                p_bar = tqdm(range(args.eval_steps),
+                            disable=args.local_rank not in [-1, 0])
+            for batch_idx in range(args.eval_steps):
+                try:
+                    inputs_x, targets_x = labeled_iter.next()
+                except:
+                    labeled_iter = iter(labeled_trainloader)
+                    inputs_x, targets_x = labeled_iter.next()
 
-        if not args.no_progress:
-            p_bar.close()
+                data_time.update(time.time() - end)
+                batch_size = inputs_x.shape[0]
 
-        if args.use_ema:
-            test_model = ema_model.ema
-        else:
-            test_model = model
+                inputs_x = inputs_x.to(args.device, non_blocking=True)
+                targets_x = targets_x.to(args.device, non_blocking=True)
+                logits_x, _ = model(inputs_x)
+    
+                Lx = F.cross_entropy(logits_x, targets_x, reduction='mean')
+                loss = Lx
 
-        if args.local_rank in [-1, 0]:
-            test_loss, test_acc = test(args, test_loader, test_model, epoch)
+                if args.amp:
+                    with amp.scale_loss(loss, optimizer) as scaled_loss:
+                        scaled_loss.backward()
+                else:
+                    loss.backward()
 
-            writer.add_scalar('train/1.train_loss', losses.avg, epoch)
-            writer.add_scalar('train/2.train_loss_x', losses_x.avg, epoch)
-            writer.add_scalar('train/3.train_loss_u', losses_u.avg, epoch)
-            writer.add_scalar('train/4.mask', mask_prob, epoch)
-            writer.add_scalar('test/1.test_acc', test_acc, epoch)
-            writer.add_scalar('test/2.test_loss', test_loss, epoch)
+                losses.update(loss.item())
+                optimizer.step()
+                scheduler.step()
+                if args.use_ema:
+                    ema_model.update(model)
+                model.zero_grad()
 
-            is_best = test_acc > best_acc
-            best_acc = max(test_acc, best_acc)
+                batch_time.update(time.time() - end)
+                end = time.time()
+                if not args.no_progress:
+                    p_bar.set_description("Train Epoch: {epoch}/{epochs:4}. Iter: {batch:4}/{iter:4}. LR: {lr:.4f}. Loss: {loss:.4f}.".format(
+                        epoch=epoch + 1,
+                        epochs=args.epochs,
+                        batch=batch_idx + 1,
+                        iter=args.eval_steps,
+                        lr=scheduler.get_last_lr()[0],
+                        data=data_time.avg,
+                        bt=batch_time.avg,
+                        loss=losses.avg))
+                    p_bar.update()
 
-            model_to_save = model.module if hasattr(model, "module") else model
+            if not args.no_progress:
+                p_bar.close()
+
             if args.use_ema:
-                ema_to_save = ema_model.ema.module if hasattr(
-                    ema_model.ema, "module") else ema_model.ema
-            save_checkpoint({
-                'epoch': epoch + 1,
-                'state_dict': model_to_save.state_dict(),
-                'ema_state_dict': ema_to_save.state_dict() if args.use_ema else None,
-                'acc': test_acc,
-                'best_acc': best_acc,
-                'optimizer': optimizer.state_dict(),
-                'scheduler': scheduler.state_dict(),
-            }, is_best, args.out)
+                test_model = ema_model.ema
+            else:
+                test_model = model
 
-            test_accs.append(test_acc)
-            logger.info('Best top-1 acc: {:.2f}'.format(best_acc))
-            logger.info('Mean top-1 acc: {:.2f}\n'.format(
-                np.mean(test_accs[-20:])))
+            if args.local_rank in [-1, 0]:
+                test_loss, test_acc = test(args, test_loader, test_model, epoch)
+
+                writer.add_scalar('train/1.train_loss', losses.avg, epoch)
+                writer.add_scalar('test/1.test_acc', test_acc, epoch)
+                writer.add_scalar('test/2.test_loss', test_loss, epoch)
+
+                is_best = test_acc > best_acc
+                best_acc = max(test_acc, best_acc)
+
+                model_to_save = model.module if hasattr(model, "module") else model
+                if args.use_ema:
+                    ema_to_save = ema_model.ema.module if hasattr(
+                        ema_model.ema, "module") else ema_model.ema
+                save_checkpoint({
+                    'epoch': epoch + 1,
+                    'state_dict': model_to_save.state_dict(),
+                    'ema_state_dict': ema_to_save.state_dict() if args.use_ema else None,
+                    'acc': test_acc,
+                    'best_acc': best_acc,
+                    'optimizer': optimizer.state_dict(),
+                    'scheduler': scheduler.state_dict(),
+                }, is_best, args.out)
+
+                test_accs.append(test_acc)
+                logger.info('Best top-1 acc: {:.2f}'.format(best_acc))
+                logger.info('Mean top-1 acc: {:.2f}\n'.format(
+                    np.mean(test_accs[-20:])))
 
     if args.local_rank in [-1, 0]:
         writer.close()

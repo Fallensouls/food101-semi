@@ -19,8 +19,7 @@ from tqdm import tqdm
 
 from dataset.cifar import DATASET_GETTERS
 from utils import AverageMeter, accuracy
-
-from ranger import Ranger  # this is from ranger.py
+from losses import SupConLoss
 
 logger = logging.getLogger(__name__)
 best_acc = 0
@@ -273,7 +272,7 @@ def main():
             args.model_cardinality = 8
             args.model_depth = 29
             args.model_width = 64
-    
+
     elif args.dataset == 'uecfood100':
         args.num_classes = 100
         if args.arch == 'wideresnet':
@@ -293,7 +292,7 @@ def main():
             args.model_cardinality = 8
             args.model_depth = 29
             args.model_width = 64
-
+            
     if args.local_rank not in [-1, 0]:
         torch.distributed.barrier()
 
@@ -313,8 +312,7 @@ def main():
     ]
     optimizer = optim.SGD(grouped_parameters, lr=args.lr,
                           momentum=0.9, nesterov=args.nesterov)
-    
-    # optimizer = Ranger(grouped_parameters, lr=args.lr)
+
     args.epochs = math.ceil(args.total_steps / args.eval_steps)
     scheduler = get_cosine_schedule_with_warmup(
         optimizer, args.warmup, args.total_steps)
@@ -373,12 +371,13 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
     losses = AverageMeter()
     losses_x = AverageMeter()
     losses_u = AverageMeter()
+    losses_s = AverageMeter()
     end = time.time()
 
     labeled_iter = iter(labeled_trainloader)
     unlabeled_iter = iter(unlabeled_trainloader)
+    supcon_criterion = SupConLoss()
 
-    print(model)
     model.train()
     for epoch in range(args.start_epoch, args.epochs):
         if not args.no_progress:
@@ -404,10 +403,15 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
             inputs = interleave(
                 torch.cat((inputs_x, inputs_u_w, inputs_u_s)), 2*args.mu+1).to(args.device, non_blocking=True)
             targets_x = targets_x.to(args.device, non_blocking=True)
-            logits, _ = model(inputs)
+            logits, features = model(inputs)
             logits = de_interleave(logits, 2*args.mu+1)
             logits_x = logits[:batch_size]
             logits_u_w, logits_u_s = logits[batch_size:].chunk(2)
+
+            features = de_interleave(features, 2*args.mu+1)
+            # features_x = features[:batch_size]
+            features_u_w, features_u_s = features[batch_size:].chunk(2)
+
             del logits
 
             Lx = F.cross_entropy(logits_x, targets_x, reduction='mean')
@@ -418,8 +422,15 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
 
             Lu = (F.cross_entropy(logits_u_s, targets_u,
                                   reduction='none') * mask).mean()
+            
+            p_label = (targets_u + 1) * mask
+            label_mask = torch.eq(p_label, (targets_u + 1).T).float()
+            label_mask = (1-label_mask) * torch.eye(label_mask.shape[0]).cuda() + label_mask
+            label_mask = label_mask.to(args.device, non_blocking=True)
+            feat = torch.cat([features_u_w.unsqueeze(1), features_u_s.unsqueeze(1)], dim=1)
+            Ls = supcon_criterion(feat, mask=label_mask)
 
-            loss = Lx + args.lambda_u * Lu
+            loss = Lx + args.lambda_u * Lu + Ls
 
             if args.amp:
                 with amp.scale_loss(loss, optimizer) as scaled_loss:
@@ -430,6 +441,7 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
             losses.update(loss.item())
             losses_x.update(Lx.item())
             losses_u.update(Lu.item())
+            losses_s.update(Ls.item())
             optimizer.step()
             scheduler.step()
             if args.use_ema:
@@ -440,7 +452,7 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
             end = time.time()
             mask_prob = mask.mean().item()
             if not args.no_progress:
-                p_bar.set_description("Train Epoch: {epoch}/{epochs:4}. Iter: {batch:4}/{iter:4}. LR: {lr:.4f}. Loss: {loss:.4f}. Loss_x: {loss_x:.4f}. Loss_u: {loss_u:.4f}. Mask: {mask:.2f}. ".format(
+                p_bar.set_description("Train Epoch: {epoch}/{epochs:4}. Iter: {batch:4}/{iter:4}. LR: {lr:.4f}. Loss: {loss:.4f}. Loss_x: {loss_x:.4f}. Loss_u: {loss_u:.4f}. Loss_s: {loss_s:.4f}. Mask: {mask:.2f}. ".format(
                     epoch=epoch + 1,
                     epochs=args.epochs,
                     batch=batch_idx + 1,
@@ -451,6 +463,7 @@ def train(args, labeled_trainloader, unlabeled_trainloader, test_loader,
                     loss=losses.avg,
                     loss_x=losses_x.avg,
                     loss_u=losses_u.avg,
+                    loss_s=losses_s.avg,
                     mask=mask_prob))
                 p_bar.update()
 
@@ -542,7 +555,6 @@ def test(args, test_loader, model, epoch):
     logger.info("top-1 acc: {:.2f}".format(top1.avg))
     logger.info("top-5 acc: {:.2f}".format(top5.avg))
     return losses.avg, top1.avg
-
 
 if __name__ == '__main__':
     main()
