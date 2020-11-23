@@ -113,19 +113,6 @@ def get_food101(root, labeledPercentage):
     logger.info("Dataset: food101")
     return LabeledSet, UnlabeledSet, TestSet
 
-def get_food101_il(root, n_task=5):
-    transform_labeled = transforms.Compose([
-        transforms.Resize((64,64)),
-        transforms.RandomHorizontalFlip(),
-        transforms.RandomCrop(size=64,
-                              padding=int(64*0.125),
-                              padding_mode='reflect'),
-        transforms.ToTensor(),
-        transforms.Normalize(mean=food101_mean, std=food101_std)])
-    train_sets, test_set = get_food101_n_data(root, transform_labeled, n_task)
-    logger.info("Dataset: food101-il")
-    return train_sets, test_set
-
 def get_uecfood100(root, labeledPercentage):
     transform_labeled = transforms.Compose([
         transforms.Resize((64,64)),
@@ -247,5 +234,4 @@ DATASET_GETTERS = {'cifar10': get_cifar10,
                    'cifar100': get_cifar100,
                    'food101': get_food101,
                    'uecfood100': get_uecfood100,
-                   'uecfood256': get_uecfood256,
-                   'food101-il': get_food101_il}
+                   'uecfood256': get_uecfood256}
