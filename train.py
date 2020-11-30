@@ -75,7 +75,7 @@ def main():
                         help='id(s) for CUDA_VISIBLE_DEVICES')
     parser.add_argument('--num-workers', type=int, default=4,
                         help='number of workers')
-    parser.add_argument('--dataset', default='cifar10', type=str,
+    parser.add_argument('--dataset', default='food101', type=str,
                         choices=['cifar10', 'cifar100','food101', 'uecfood100', 'uecfood256'],
                         help='dataset name')
     parser.add_argument('--num-labeled', type=int, default=4000,

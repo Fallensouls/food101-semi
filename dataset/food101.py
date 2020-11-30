@@ -18,7 +18,7 @@ class LabeledDataset(Dataset):
         self.label = label
 
     def __getitem__(self,index):
-        pic_path = os.path.join(self.path,'images',self.list[index]+'.jpg')
+        pic_path = os.path.join(self.path,'images',self.list[index].replace("\n","")+'.jpg')
         img = Image.open(pic_path).convert('RGB')
         # img=cv2.resize(np.asarray(img),(64,64),interpolation=cv2.INTER_NEAREST)  #修改图片的尺寸
         img = self.transform(img)
@@ -39,7 +39,7 @@ class UnlabeledDataset(Dataset):
         self.transform = transform
 
     def __getitem__(self,index):
-        pic_path = os.path.join(self.path,'images',self.list[index]+'.jpg')
+        pic_path = os.path.join(self.path,'images',self.list[index].replace("\n","")+'.jpg')
         img = Image.open(pic_path).convert('RGB')
         # img = self.resize(img)
         img = self.transform(img)
@@ -67,7 +67,7 @@ class TestDataset(Dataset):
         return self.len
 
 
-def get_food101_data(path,LabeledPercent,labeled_tranform,unlabeled_transform):
+def get_food101_data(path, labeled_percent, labeled_tranform, unlabeled_transform):
     i=0
     class_label={}
     with open(os.path.join(path,'classes.txt'), 'r') as f:
@@ -76,21 +76,22 @@ def get_food101_data(path,LabeledPercent,labeled_tranform,unlabeled_transform):
             class_label[line.replace("\n","")] = i
             i+=1
             line = f.readline()
-    with open(os.path.join(path,'train.txt'), 'r') as f:
-        picture_list = f.readlines()
-    LabeledList=[]
-    UnlabeledList=[]
-    for pic in picture_list:
-        if(random()>LabeledPercent):
-            UnlabeledList.append(pic.replace("\n",""))
-        else:
-            LabeledList.append(pic.replace("\n",""))
     
     with open(os.path.join(path,'test.txt'), 'r') as f:
         test_list = f.readlines()
-    LabeledSet = LabeledDataset(path,LabeledList,labeled_tranform,class_label)
-    UnlabeledSet = UnlabeledDataset(path,UnlabeledList,unlabeled_transform,class_label)
+    filename = 'train_label_{}.txt'.format(labeled_percent)
+    with open(os.path.join(path, filename), 'r') as f:
+        train_label_list = f.readlines()
+    
+    filename = 'train_unlabel_{}.txt'.format(labeled_percent)
+
+    with open(os.path.join(path, filename), 'r') as f:
+        train_unlabel_list = f.readlines()
+    
+    LabeledSet = LabeledDataset(path,train_label_list,labeled_tranform,class_label)
+    UnlabeledSet = UnlabeledDataset(path,train_unlabel_list,unlabeled_transform,class_label)
     TestSet = TestDataset(path,test_list,labeled_tranform,class_label)
+
     return LabeledSet,UnlabeledSet,TestSet
 
 

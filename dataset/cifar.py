@@ -7,7 +7,7 @@ from torchvision import transforms
 from torchvision.transforms.transforms import Resize
 from .randaugment import RandAugmentMC
 from .food101 import get_food101_data
-from .n_food101 import get_food101_n_data
+# from .n_food101 import get_food101_n_data
 from .uecfood import get_uecfood_data
 
 logger = logging.getLogger(__name__)
